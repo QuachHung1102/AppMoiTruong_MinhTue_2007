@@ -28,6 +28,7 @@ export const CalendarComponent = memo(props => {
         },
       },
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -82,7 +83,7 @@ export const CalendarComponent = memo(props => {
       disableArrowLeft={true}
       disableMonthChange={true}
       onPressArrowRight={() => {
-        console.log(`move to ...`);
+        console.log('move to ...');
       }}
       theme={calendarTheme}
     />

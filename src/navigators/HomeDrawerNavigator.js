@@ -1,6 +1,6 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import MainStackNavigator from './HomeStackNavigator';
+import {HomeScreen} from '../screens';
 import CustomDrawerContent from '../components/Drawer/CustomDrawer';
 
 const Drawer = createDrawerNavigator();
@@ -8,13 +8,13 @@ const Drawer = createDrawerNavigator();
 export default function HomeDrawer() {
   return (
     <Drawer.Navigator
-      initialRouteName="MainStack"
+      initialRouteName="HomeScreen"
       // drawerContent={props => <CustomDrawerContent {...props} />}>
       drawerContent={props => {}}>
       <Drawer.Screen
-        name="MainStack"
-        component={MainStackNavigator}
-        options={{headerShown: false}}
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{headerShown: true}}
       />
     </Drawer.Navigator>
   );

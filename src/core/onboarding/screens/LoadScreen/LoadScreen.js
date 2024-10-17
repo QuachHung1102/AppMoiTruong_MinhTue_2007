@@ -1,11 +1,11 @@
-import React, { useCallback, useLayoutEffect } from 'react';
-import { View, Keyboard } from 'react-native';
-import { useFocusEffect, useNavigation } from '@react-navigation/core';
+import React, {useCallback, useLayoutEffect} from 'react';
+import {View, Keyboard} from 'react-native';
+import {useFocusEffect, useNavigation} from '@react-navigation/core';
 import deviceStorage from '../../utils/AuthDeviceStorage';
-import { useDispatch } from 'react-redux';
-import { setUserData } from '../../redux/auth';
-import { useOnboardingConfig } from '../../hooks/useOnboardingConfig';
-import { useAuth } from '../../hooks/useAuth';
+import {useDispatch} from 'react-redux';
+import {setUserData} from '../../redux/auth';
+import {useOnboardingConfig} from '../../hooks/useOnboardingConfig';
+import {useAuth} from '../../hooks/useAuth';
 
 const LoadScreen = () => {
   const navigation = useNavigation();
@@ -13,27 +13,28 @@ const LoadScreen = () => {
   const dispatch = useDispatch();
   const authManager = useAuth();
 
-  const { config } = useOnboardingConfig();
+  const {config} = useOnboardingConfig();
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
-    })
+    });
   }, [navigation]);
 
   useFocusEffect(
     useCallback(() => {
       setAppState();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []),
   );
 
   const setAppState = async () => {
     const shouldShowOnboardingFlow =
-      await deviceStorage.getShouldShowOnboardingFlow()
+      await deviceStorage.getShouldShowOnboardingFlow();
     if (!shouldShowOnboardingFlow) {
       if (config?.isDelayedLoginEnabled) {
-        fetchPersistedUserIfNeeded()
-        return
+        fetchPersistedUserIfNeeded();
+        return;
       }
       navigation.navigate('LoginStack');
     } else {
@@ -43,7 +44,7 @@ const LoadScreen = () => {
 
   const fetchPersistedUserIfNeeded = async () => {
     if (!authManager?.retrievePersistedAuthUser) {
-      return navigation.navigate('DelayedHome')
+      return navigation.navigate('DelayedHome');
     }
     authManager
       ?.retrievePersistedAuthUser(config)
@@ -53,17 +54,17 @@ const LoadScreen = () => {
             setUserData({
               user: response.user,
             }),
-          )
-          Keyboard.dismiss()
+          );
+          Keyboard.dismiss();
         }
-        navigation.navigate('DelayedHome')
+        navigation.navigate('DelayedHome');
       })
       .catch(error => {
-        console.log("error: ", error)
-        navigation.navigate('DelayedHome')
-      })
+        console.log('error: ', error);
+        navigation.navigate('DelayedHome');
+      });
   };
-  return <View />
+  return <View />;
 };
 
 export default LoadScreen;

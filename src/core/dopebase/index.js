@@ -43,6 +43,7 @@ import {
   CalendarComponent,
   CalendarCustom,
   CalendarListCustom,
+  DonutChart,
 } from './core/components/advanced';
 
 export {
@@ -76,6 +77,7 @@ export {
   CalendarComponent,
   CalendarCustom,
   CalendarListCustom,
+  DonutChart,
   theme,
   DopebaseContext,
   extendTheme,

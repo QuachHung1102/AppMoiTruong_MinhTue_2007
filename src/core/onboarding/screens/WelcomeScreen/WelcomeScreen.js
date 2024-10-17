@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Image, Keyboard, Platform, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
-import { useDispatch } from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {Image, Keyboard, Platform, Text, View} from 'react-native';
+import {useNavigation} from '@react-navigation/core';
+import {useDispatch} from 'react-redux';
 import messaging from '@react-native-firebase/messaging';
 import {
   useTheme,
@@ -11,11 +11,11 @@ import {
   Button,
 } from '../../../dopebase';
 import dynamicStyles from './styles';
-import { setUserData } from '../../redux/auth';
-import { updateUser } from '../../../users';
-import { useOnboardingConfig } from '../../hooks/useOnboardingConfig';
+import {setUserData} from '../../redux/auth';
+import {updateUser} from '../../../users';
+import {useOnboardingConfig} from '../../hooks/useOnboardingConfig';
 
-import { useAuth } from '../../hooks/useAuth';
+import {useAuth} from '../../hooks/useAuth';
 import useCurrentUser from '../../hooks/useCurrentUser';
 
 const WelcomeScreen = props => {
@@ -23,38 +23,39 @@ const WelcomeScreen = props => {
   const currentUser = useCurrentUser();
 
   const dispatch = useDispatch();
-  const { config } = useOnboardingConfig();
+  const {config} = useOnboardingConfig();
 
-  const { localized } = useTranslations();
-  const { theme, appearance } = useTheme();
+  const {localized} = useTranslations();
+  const {theme, appearance} = useTheme();
   const styles = dynamicStyles(theme, appearance);
 
   const [isLoading, setIsLoading] = useState(true);
 
   const authManager = useAuth();
 
-  const { title, caption } = props;
+  const {title, caption} = props;
 
   useEffect(() => {
-    tryToLoginFirst()
+    tryToLoginFirst();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleInitialNotification = async () => {
-    const userID = currentUser?.id || currentUser?.userID
-    const intialNotification = await messaging().getInitialNotification()
+    const userID = currentUser?.id || currentUser?.userID;
+    const intialNotification = await messaging().getInitialNotification();
 
     if (intialNotification && Platform.OS === 'android') {
       const {
-        data: { channelID, type },
-      } = intialNotification
+        data: {channelID, type},
+      } = intialNotification;
 
       if (type === 'chat_message') {
-        handleChatMessageType(channelID)
+        handleChatMessageType(channelID);
       }
     }
 
     if (userID && Platform.OS === 'ios') {
-      updateUser(userID, { badgeCount: 0 })
+      updateUser(userID, {badgeCount: 0});
     }
   };
 
@@ -63,35 +64,35 @@ const WelcomeScreen = props => {
       .retrievePersistedAuthUser(config)
       .then(response => {
         if (response?.user) {
-          const user = response.user
+          const user = response.user;
           dispatch(
             setUserData({
               user: response.user,
             }),
-          )
-          Keyboard.dismiss()
+          );
+          Keyboard.dismiss();
           if (user?.role === 'admin') {
             navigation.reset({
               index: 0,
-              routes: [{ name: 'AdminStack', params: { user } }],
-            })
+              routes: [{name: 'AdminStack', params: {user}}],
+            });
           } else {
             navigation.reset({
               index: 0,
-              routes: [{ name: 'HomeDrawer', params: { user } }],
-            })
+              routes: [{name: 'MainStack', params: {user}}],
+            });
           }
           if (Platform.OS !== 'web') {
-            handleInitialNotification()
+            handleInitialNotification();
           }
-          return
+          return;
         }
-        setIsLoading(false)
+        setIsLoading(false);
       })
       .catch(error => {
-        console.log(error)
-        setIsLoading(false)
-      })
+        console.log(error);
+        setIsLoading(false);
+      });
   };
 
   const handleChatMessageType = (channelID, name) => {
@@ -99,12 +100,12 @@ const WelcomeScreen = props => {
       id: channelID,
       channelID,
       name,
-    }
+    };
 
     navigation.navigate('PersonalChat', {
       channel,
       openedFromPushNotification: true,
-    })
+    });
   };
 
   if (isLoading == true) {
@@ -112,8 +113,8 @@ const WelcomeScreen = props => {
       <View style={styles.container}>
         <ActivityIndicator />
       </View>
-    )
-  };
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -133,10 +134,10 @@ const WelcomeScreen = props => {
         />
       </View>
       <Text style={styles.title}>
-        {title ? title : config.onboardingConfig.welcomeTitle}
+        {title || config.onboardingConfig.welcomeTitle}
       </Text>
       <Text style={styles.caption}>
-        {caption ? caption : config.onboardingConfig.welcomeCaption}
+        {caption || config.onboardingConfig.welcomeCaption}
       </Text>
       <Button
         text={localized('Log In')}
@@ -152,7 +153,7 @@ const WelcomeScreen = props => {
               })
             : navigation.navigate('LoginStack', {
                 screen: 'Login',
-              })
+              });
         }}>
         {localized('Log In')}
       </Button>
@@ -171,12 +172,12 @@ const WelcomeScreen = props => {
               })
             : navigation.navigate('LoginStack', {
                 screen: 'Signup',
-              })
+              });
         }}>
         {localized('Sign Up')}
       </Button>
     </View>
-  )
+  );
 };
 
 export default WelcomeScreen;

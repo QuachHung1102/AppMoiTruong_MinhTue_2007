@@ -1,9 +1,9 @@
-import { Dimensions, StyleSheet } from 'react-native';
-import { useTheme } from '../../core/dopebase';
+import {Dimensions, StyleSheet} from 'react-native';
+import {useTheme} from '../../core/dopebase';
 
 const dynamicStyles = (theme, appearance) => {
-  const colorSet = theme.colors[appearance]
-  const { width, height } = Dimensions.get('window');
+  const colorSet = theme.colors[appearance];
+  const {width, height} = Dimensions.get('window');
 
   return StyleSheet.create({
     flexRow: {
@@ -30,15 +30,22 @@ const dynamicStyles = (theme, appearance) => {
       marginTop: -320,
     },
     // Phần này không thuộc template
+    nunitoBold: {
+      fontFamily: 'Nunito-Bold',
+      textAlign: 'center',
+      fontSize: 'normal',
+    },
     userInfoContainer: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'space-between',
       backgroundColor: colorSet.thirBackground,
     },
-    currentDate: {
-      fontWeight: '700',
-      lineHeight: 30,
+    userName: {
+      fontFamily: 'Nunito-Bold',
+      color: colorSet.thirText,
+      letterSpacing: 1,
+      fontWeight: 'normal',
     },
     box1: {
       backgroundColor: colorSet.thirBackground,
@@ -68,7 +75,7 @@ const dynamicStyles = (theme, appearance) => {
       height: width * 0.51,
       borderWidth: 2,
       borderColor: colorSet.fifthBackground,
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
     },
     box5: {
       backgroundColor: colorSet.thirBackground,
@@ -76,7 +83,7 @@ const dynamicStyles = (theme, appearance) => {
       height: width * 0.31,
       borderWidth: 2,
       borderColor: colorSet.thirBackground,
-      justifyContent: 'center'
+      justifyContent: 'center',
     },
     iconCover: {
       justifyContent: 'center',
@@ -106,11 +113,11 @@ const dynamicStyles = (theme, appearance) => {
       gap: width * 0.07,
     },
     tienTrinh: {
-      width: "100%",
+      width: '100%',
       height: 10,
       borderRadius: 10,
     },
-  })
-}
+  });
+};
 
-export default dynamicStyles
+export default dynamicStyles;

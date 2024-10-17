@@ -53,7 +53,7 @@ export const CalendarScreen = memo(props => {
           <TouchableIcon
             imageStyle={{tintColor: colorSet.thirBackground}}
             iconSource={menuIcon}
-            onPress={() => navigation.openDrawer()}
+            onPress={() => {}}
           />
         </View>
       ),
@@ -64,7 +64,7 @@ export const CalendarScreen = memo(props => {
       },
       headerTintColor: colorSet.secondaryText,
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isLoading) {

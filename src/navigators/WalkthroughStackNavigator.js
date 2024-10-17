@@ -1,6 +1,5 @@
-import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet } from 'react-native';
-import { WalkthroughScreen } from '../core/onboarding';
+import {createStackNavigator} from '@react-navigation/stack';
+import {WalkthroughScreen} from '../core/onboarding';
 import React from 'react';
 
 const WalkthroughStack = createStackNavigator();
@@ -10,20 +9,18 @@ const WalkthroughStackNavigator = () => {
     <WalkthroughStack.Navigator
       screenOptions={{
         headerBackTitleVisible: false,
-        cardStyle: { backgroundColor: '#FFFFFF' },
+        cardStyle: {backgroundColor: '#FFFFFF'},
         cardShadowEnabled: false,
         headerShown: false,
       }}
-      initialRouteName="Walkthrough"
-    >
+      initialRouteName="Walkthrough">
       <WalkthroughStack.Screen
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
         name="Walkthrough"
         component={WalkthroughScreen}
       />
-
     </WalkthroughStack.Navigator>
-  )
+  );
 };
 
 export default WalkthroughStackNavigator;

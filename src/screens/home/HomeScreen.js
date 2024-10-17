@@ -19,6 +19,7 @@ import {
   SearchBar,
   Button,
   Switch,
+  DonutChart,
 } from '../../core/dopebase';
 import {Avatar} from 'react-native-paper';
 import dynamicStyles from './styles';
@@ -32,6 +33,7 @@ import {
 import HeadingBlock from '../../components/HeadingBlock';
 
 import menuIcon from '../../assets/icons/menu1x.png';
+import {head} from 'lodash';
 
 const {width, height} = Dimensions.get('window');
 
@@ -92,9 +94,32 @@ export const HomeScreen = memo(props => {
     () => (
       <View>
         <TouchableIcon
-          imageStyle={{tintColor: colorSet.primaryBackground}}
+          imageStyle={{
+            tintColor: colorSet.primaryBackground,
+            height: height * 0.045,
+          }}
+          iconSource={theme.icons.add}
+          onPress={() => {
+            console.log('Add icon');
+          }}
+        />
+      </View>
+    ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
+  const _headerLeft = useCallback(
+    () => (
+      <View>
+        <TouchableIcon
+          imageStyle={{
+            tintColor: colorSet.primaryBackground,
+          }}
           iconSource={menuIcon}
-          onPress={() => navigation.openDrawer()}
+          onPress={() => {
+            navigation.openDrawer();
+          }}
         />
       </View>
     ),
@@ -106,6 +131,7 @@ export const HomeScreen = memo(props => {
     navigation.setOptions({
       headerTitle: localized('Theo dõi'),
       headerTitleAlign: 'center',
+      headerLeft: _headerLeft,
       headerRight: _headerRight,
       headerStyle: {
         backgroundColor: colorSet.thirBackground,
@@ -129,11 +155,15 @@ export const HomeScreen = memo(props => {
       <View style={{flex: 1, backgroundColor: colorSet.primaryBackground}}>
         <View ph5 pv5 style={styles.userInfoContainer}>
           <View>
-            <Text h3 style={styles.currentDate}>
+            <Text h2 style={styles.userName}>
               Hi Anh
             </Text>
-            <Text>
-              Bạn đã giảm thiểu <Text bold>94kg CO2 </Text>tháng này này
+            <Text style={{color: colorSet.primaryBackground}}>
+              Bạn đã giảm thiểu{' '}
+              <Text bold style={{color: colorSet.thirText}}>
+                94kg CO2{' '}
+              </Text>
+              tháng này này
             </Text>
           </View>
           <View>
@@ -141,12 +171,12 @@ export const HomeScreen = memo(props => {
           </View>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
+          <DonutChart />
           <HeadingBlock
             localized={localized}
             text={'Today'}
             text2={currentDate}
           />
-
           <HeadingBlock localized={localized} text={'Sắp tới'} />
 
           <HeadingBlock localized={localized} text={'Quản lý'} />

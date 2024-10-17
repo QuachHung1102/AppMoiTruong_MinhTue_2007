@@ -1,13 +1,13 @@
 import React from 'react';
 import {Dimensions, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {useTranslations, View, useTheme, Text} from '../core/dopebase';
-import {HomeScreen} from '../screens';
+import {useTranslations, View, useTheme} from '../core/dopebase';
 import WorkoutStackNavigator from './WorkoutStackNavigator';
 import MentalStackNavigator from './MentalStackNavigator';
 import {useOnboardingConfig} from '../core/onboarding/hooks/useOnboardingConfig';
 
 import CalendarStackNavigator from './CalendarStackNavigator';
+import HomeDrawer from './HomeDrawerNavigator';
 
 const MainStack = createBottomTabNavigator();
 const MainStackNavigator = () => {
@@ -92,8 +92,8 @@ const MainStackNavigator = () => {
           }}>
           <MainStack.Screen
             name="TheoDoi"
-            component={HomeScreen}
-            options={{headerShown: true, tabBarLabel: 'Theo dõi'}}
+            component={HomeDrawer}
+            options={{headerShown: false, tabBarLabel: 'Theo dõi'}}
           />
           <MainStack.Screen
             name="ChienDich"
