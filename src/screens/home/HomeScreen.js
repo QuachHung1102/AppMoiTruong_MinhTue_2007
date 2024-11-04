@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useLayoutEffect,
   useCallback,
+  useRef,
 } from 'react';
 import {Dimensions, ScrollView, Alert} from 'react-native';
 import {
@@ -20,6 +21,7 @@ import {
   Button,
   Switch,
   DonutChart,
+  Image,
 } from '../../core/dopebase';
 import {Avatar} from 'react-native-paper';
 import dynamicStyles from './styles';
@@ -33,11 +35,25 @@ import {
 import HeadingBlock from '../../components/HeadingBlock';
 
 import menuIcon from '../../assets/icons/menu1x.png';
-import {head} from 'lodash';
+import updateDeviceStorage from '../../core/helpers/updateDeviceStorage';
+import Icon from '../../assets/images/svg/Svg';
 
 const {width, height} = Dimensions.get('window');
 
+const fetchData = async setItems => {
+  try {
+    const data = await updateDeviceStorage.getStoreData('emissionsData');
+    if (Array.isArray(data)) {
+      setItems(data);
+    }
+  } catch (error) {
+    setItems([]);
+  }
+};
+
 export const HomeScreen = memo(props => {
+  const [items, setItems] = useState([]);
+  const isInitialized = useRef(false);
   const {navigation} = props;
   const currentUser = useCurrentUser();
   const authManager = useAuth();
@@ -59,6 +75,12 @@ export const HomeScreen = memo(props => {
   };
 
   useEffect(() => {
+    if (!currentUser?.id) {
+      return;
+    }
+  }, [currentUser?.id]);
+
+  useEffect(() => {
     const fetchCurrentDate = async () => {
       await new Promise(resolve => {
         setTimeout(resolve, 1000);
@@ -71,16 +93,25 @@ export const HomeScreen = memo(props => {
       }
     };
     fetchCurrentDate();
-    if (currentDate) {
-      setIsLoading(false);
-    }
   }, [currentDate]);
 
   useEffect(() => {
-    if (!currentUser?.id) {
-      return;
+    if (isInitialized.current) {
+      updateDeviceStorage.setStoreData('emissionsData', items);
+    } else {
+      isInitialized.current = true; // Đánh dấu rằng items đã được khởi tạo
     }
-  }, [currentUser?.id]);
+  }, [items]);
+
+  useEffect(() => {
+    fetchData(setItems);
+  }, []);
+
+  useEffect(() => {
+    if (currentDate && items) {
+      setIsLoading(false);
+    }
+  }, [currentDate, items]);
 
   // const onLogout = useCallback(() => {
   //   authManager?.logout(currentUser);
@@ -144,6 +175,17 @@ export const HomeScreen = memo(props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const renderHeader = () => (
+    <View ph5>
+      <Text style={[styles.headerTitle, styles.textCenter]}>
+        Theo dõi bữa ăn
+      </Text>
+      <Text style={[styles.textCenter, styles.headerText]}>
+        Tính toán lượng tiêu thụ hàng ngày của bạn
+      </Text>
+    </View>
+  );
+
   if (isLoading) {
     return (
       <View style={styles.container}>
@@ -171,15 +213,77 @@ export const HomeScreen = memo(props => {
           </View>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <DonutChart />
+          <DonutChart pieData={items} />
+          {renderHeader()}
+          <View mh5 ph5 pv5 style={styles.flexRow}>
+            <View>
+              <Image
+                rounded
+                style={styles.image}
+                source={require('../../assets/images/backgroundImages/meal.png')}
+              />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button
+                text={localized('Dinner')}
+                containerStyle={styles.buttonStyle}
+                textStyle={styles.btnTextStyles}
+              />
+              <Button
+                text={localized('Lunch')}
+                containerStyle={styles.buttonStyle}
+                textStyle={styles.btnTextStyles}
+              />
+              <Button
+                text={localized('Breakfast')}
+                containerStyle={styles.buttonStyle}
+                textStyle={styles.btnTextStyles}
+              />
+            </View>
+          </View>
+          <View ph5 style={styles.flexRow}>
+            <Text h3 style={{fontWeight: 'normal'}}>
+              Lịch trình gần đây
+            </Text>
+            <TouchableIcon
+              iconSource={theme.icons.add}
+              onPress={handlePress}
+              imageStyle={styles.iconStyle}
+              containerStyle={[styles.iconContainerStyle]}
+            />
+          </View>
           <HeadingBlock
             localized={localized}
             text={'Today'}
             text2={currentDate}
           />
-          <HeadingBlock localized={localized} text={'Sắp tới'} />
-
-          <HeadingBlock localized={localized} text={'Quản lý'} />
+          <View mb8>
+            <ScrollView scrollEnabled={false}>
+              <View mh5 pb2 style={[styles.flexRow, styles.listItem]}>
+                <View style={styles.flexRow}>
+                  <View br5 style={styles.iconContainer}>
+                    <Icon.Car width={60} height={25} />
+                  </View>
+                  <View ml2>
+                    <Text h3 style={styles.textItemTitle}>
+                      Xe hơi
+                    </Text>
+                    <Text style={styles.textItemParagraph}>Từ 16h20’ trong 25’</Text>
+                    <Text style={styles.textItemParagraph}>Tự động theo dõi</Text>
+                  </View>
+                </View>
+                <View style={styles.listItemRight}>
+                  <View style={styles.flexRow}>
+                    <Text mr1>0.0kg</Text>
+                    <Text>CO2</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.textItemParagraph}>Chỉnh sửa</Text>
+                  </View>
+                </View>
+              </View>
+            </ScrollView>
+          </View>
         </ScrollView>
       </View>
     );

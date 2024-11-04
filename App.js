@@ -17,8 +17,13 @@ import {AuthProvider} from './src/core/onboarding/hooks/useAuth';
 import {authManager} from './src/core/onboarding/api';
 
 import MobileTheme from './src/theme'; // Import your theme here
-import {bootstrap, getNotiSets, getTriggerNotis} from './src/core/helpers/notifee';
+import {
+  bootstrap,
+  getNotiSets,
+  getTriggerNotis,
+} from './src/core/helpers/notifee';
 import {fetchAgendaItems} from './src/core/users/api/backend/agenda';
+import {fetchEmissionsData} from './src/core/users/api/backend/emissions';
 
 const store = configureStore();
 
@@ -29,6 +34,7 @@ const App = () => {
     const loadData = async () => {
       try {
         await fetchAgendaItems();
+        await fetchEmissionsData();
       } catch (error) {
         console.error('Error fetching agenda items:', error);
       }

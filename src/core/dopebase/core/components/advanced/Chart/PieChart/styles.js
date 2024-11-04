@@ -17,8 +17,8 @@ const styles = (theme, appearance) => {
     },
     headerText: {
       color: 'white',
-      fontSize: 16,
-      fontWeight: 'bold',
+      fontSize: width * 0.04,
+      fontFamily: 'Nunito-Bold',
     },
     containerPieChart: {
       padding: 20,

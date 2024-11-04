@@ -3,6 +3,7 @@ import {useTheme} from '../../core/dopebase';
 
 const dynamicStyles = (theme, appearance) => {
   const colorSet = theme.colors[appearance];
+  const fontSizeSet = theme.fontSizes;
   const {width, height} = Dimensions.get('window');
 
   return StyleSheet.create({
@@ -24,10 +25,11 @@ const dynamicStyles = (theme, appearance) => {
       fontSize: 18,
     },
     image: {
-      height: 128,
-      width: 128,
-      borderRadius: 64,
-      marginTop: -320,
+      height: 122,
+      width: 122,
+    },
+    textCenter: {
+      textAlign: 'center',
     },
     // Phần này không thuộc template
     nunitoBold: {
@@ -47,75 +49,56 @@ const dynamicStyles = (theme, appearance) => {
       letterSpacing: 1,
       fontWeight: 'normal',
     },
-    box1: {
+    headerTitle: {
+      fontSize: width * 0.06,
+    },
+    headerText: {
+      fontSize: width * 0.037,
+      color: colorSet.secondText,
+    },
+    buttonContainer: {
+      rowGap: height * 0.015,
+    },
+    buttonStyle: {
+      width: width * 0.375,
+      height: height * 0.055,
+      paddingBottom: 0,
+      paddingTop: 0,
       backgroundColor: colorSet.thirBackground,
-      width: width * 0.55,
-      height: width * 0.31,
-      borderWidth: 2,
-      borderColor: colorSet.thirBackground,
     },
-    box2: {
-      backgroundColor: colorSet.primaryBackground,
-      width: width * 0.55,
-      height: width * 0.27,
-      borderWidth: 2,
-      borderColor: colorSet.thirBackground,
+    btnTextStyles: {
+      fontFamily: 'Nunito-Bold',
     },
-    box3: {
-      backgroundColor: colorSet.forthBackground,
-      width: width * 0.55,
-      height: width * 0.2,
-      borderWidth: 2,
-      borderColor: colorSet.forthBackground,
-      justifyContent: 'space-around',
+    iconContainerStyle: {
+      padding: 0,
     },
-    box4: {
-      backgroundColor: colorSet.fifthBackground,
-      width: width * 0.31,
-      height: width * 0.51,
-      borderWidth: 2,
-      borderColor: colorSet.fifthBackground,
-      justifyContent: 'space-between',
+    iconStyle: {
+      height: height * 0.04,
     },
-    box5: {
-      backgroundColor: colorSet.thirBackground,
-      width: width * 0.31,
-      height: width * 0.31,
-      borderWidth: 2,
-      borderColor: colorSet.thirBackground,
-      justifyContent: 'center',
+    listItem: {
+      borderBottomWidth: 1,
+      borderBottomColor: colorSet.hairline,
     },
-    iconCover: {
+    listItemRight: {
+      alignItems: 'flex-end',
+    },
+    iconContainer: {
+      backgroundColor: '#40ABF6',
+      width: 72,
+      height: 72,
       justifyContent: 'center',
       alignItems: 'center',
-      borderRadius: 50,
     },
-    notiContainer: {
-      backgroundColor: colorSet.thirBackground,
-      borderRadius: 15,
+    textItemTitle: {
+      fontSize: fontSizeSet.s,
+      fontFamily: 'Nunito-Bold',
+      fontWeight: '600',
     },
-    notiContent: {
-      backgroundColor: colorSet.componentBackground2,
-    },
-    notiContainerText: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-    },
-    consumWaterText: {
-      color: colorSet.primaryText,
-    },
-    updateAppearanceContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: colorSet.primaryForeground,
-      gap: width * 0.07,
-    },
-    tienTrinh: {
-      width: '100%',
-      height: 10,
-      borderRadius: 10,
+    textItemParagraph: {
+      fontSize: fontSizeSet.xs,
+      fontFamily: 'Nunito-Regul0ar',
+      fontWeight: '400',
+      color: colorSet.secondaryText,
     },
   });
 };
