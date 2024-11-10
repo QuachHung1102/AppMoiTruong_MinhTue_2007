@@ -23,10 +23,7 @@ import {
   DonutChart,
   Image,
 } from '../../core/dopebase';
-import { Avatar } from 'react-native-paper';
 import dynamicStyles from './styles';
-import { useCurrentUser } from '../../core/onboarding';
-import { useAuth } from '../../core/onboarding/hooks/useAuth';
 import {
   timeFormat,
   getUnixTimeStamp,
@@ -52,35 +49,23 @@ const fetchData = async (setItems, key) => {
   }
 };
 
-export const HomeScreen = memo(props => {
+export const DetailScreen = memo(props => {
   const [items, setItems] = useState([]);
-  const [phatThaiItems, setphatThaiItems] = useState([]);
   const isInitialized = useRef(false);
   const { navigation } = props;
-  const currentUser = useCurrentUser();
-  const authManager = useAuth();
   const { localized } = useTranslations();
   const { theme, appearance } = useTheme();
   const colorSet = theme.colors[appearance];
+  const iconSet = theme.icons;
   const styles = dynamicStyles(theme, appearance);
   const [isLoading, setIsLoading] = useState(true);
-  const [profilePictureFile, setProfilePictureFile] = useState(null);
   const [currentDate, setCurrentDate] = useState(null);
   const [text, setText] = useState('');
   const [truncateValue, setTruncateValue] = useState(7);
-  const avatarSize = useMemo(() => {
-    return height * 0.075;
-  }, []);
 
   const handlePress = () => {
     Alert.alert('Ố la la', 'This feature is not implemented yet');
   };
-
-  useEffect(() => {
-    if (!currentUser?.id) {
-      return;
-    }
-  }, [currentUser?.id]);
 
   useEffect(() => {
     const fetchCurrentDate = async () => {
@@ -107,14 +92,13 @@ export const HomeScreen = memo(props => {
 
   useEffect(() => {
     fetchData(setItems, 'emissionsData');
-    fetchData(setphatThaiItems, 'phatThaiItems');
   }, []);
 
   useEffect(() => {
-    if (currentDate && items && phatThaiItems) {
+    if (currentDate && items) {
       setIsLoading(false);
     }
-  }, [currentDate, items, phatThaiItems]);
+  }, [currentDate, items]);
 
   // const onLogout = useCallback(() => {
   //   authManager?.logout(currentUser);
@@ -150,7 +134,7 @@ export const HomeScreen = memo(props => {
           imageStyle={{
             tintColor: colorSet.primaryBackground,
           }}
-          iconSource={menuIcon}
+          iconSource={iconSet.backArrow}
           onPress={() => {
             navigation.openDrawer();
           }}
@@ -163,7 +147,7 @@ export const HomeScreen = memo(props => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: localized('Theo dõi'),
+      headerTitle: localized('Chi tiết'),
       headerTitleAlign: 'center',
       headerLeft: _headerLeft,
       headerRight: _headerRight,
@@ -178,17 +162,6 @@ export const HomeScreen = memo(props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderHeader = () => (
-    <View ph5>
-      <Text style={[styles.headerTitle, styles.textCenter]}>
-        Theo dõi bữa ăn
-      </Text>
-      <Text style={[styles.textCenter, styles.headerText]}>
-        Tính toán lượng tiêu thụ hàng ngày của bạn
-      </Text>
-    </View>
-  );
-
   if (isLoading) {
     return (
       <View style={styles.container}>
@@ -198,75 +171,26 @@ export const HomeScreen = memo(props => {
   } else {
     return (
       <View style={{ flex: 1, backgroundColor: colorSet.primaryBackground }}>
-        <View ph5 pv5 style={styles.userInfoContainer}>
-          <View>
-            <Text h2 style={styles.userName}>
-              Hi Anh
-            </Text>
-            <Text style={{ color: colorSet.primaryBackground }}>
-              Bạn đã giảm thiểu{' '}
-              <Text bold style={{ color: colorSet.thirText }}>
-                94kg CO2{' '}
-              </Text>
-              tháng này này
-            </Text>
-          </View>
-          <View>
-            <Avatar.Text size={avatarSize} label="A" />
-          </View>
-        </View>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <DonutChart pieData={items} />
-          {renderHeader()}
-          <View mh5 ph5 pv5 style={styles.flexRow}>
-            <View>
-              <Image
-                rounded
-                style={styles.image}
-                source={require('../../assets/images/backgroundImages/meal.png')}
-              />
+        <ScrollView>
+          <View style={{
+            backgroundColor: colorSet.thirBackground,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <View mv5 style={{
+              height: 180,
+              width: 180,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderWidth: 15,
+              borderColor: '#4FC98F',
+              borderRadius: 100,
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            }}>
+              <Text style={styles.dataInfoText1}>1099kg</Text>
+              <Text style={styles.dataInfoText2}>CO2</Text>
+              <Text style={styles.dataInfoText3}>Tháng này</Text>
             </View>
-            <View style={styles.buttonContainer}>
-              <Button
-                text={localized('Dinner')}
-                containerStyle={styles.buttonStyle}
-                textStyle={styles.btnTextStyles}
-              />
-              <Button
-                text={localized('Lunch')}
-                containerStyle={styles.buttonStyle}
-                textStyle={styles.btnTextStyles}
-              />
-              <Button
-                text={localized('Breakfast')}
-                containerStyle={styles.buttonStyle}
-                textStyle={styles.btnTextStyles}
-              />
-            </View>
-          </View>
-          <View ph5 style={styles.flexRow}>
-            <Text h3 style={{ fontWeight: 'normal' }}>
-              Lịch trình gần đây
-            </Text>
-            <TouchableIcon
-              iconSource={theme.icons.add}
-              onPress={handlePress}
-              imageStyle={styles.iconStyle}
-              containerStyle={[styles.iconContainerStyle]}
-            />
-          </View>
-          <HeadingBlock
-            localized={localized}
-            text={'Today'}
-            text2={currentDate}
-          />
-          <View mb8>
-            <ScrollView scrollEnabled={false}>
-              {Array.isArray(phatThaiItems) &&
-                phatThaiItems.at(-1).data.map((item, index) => {
-                  return <ListItem key={item.title + index} item={item} />;
-                })}
-            </ScrollView>
           </View>
         </ScrollView>
       </View>

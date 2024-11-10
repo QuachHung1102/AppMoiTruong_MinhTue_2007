@@ -1,10 +1,10 @@
-import {Dimensions, StyleSheet} from 'react-native';
-import {useTheme} from '../../core/dopebase';
+import { Dimensions, StyleSheet } from 'react-native';
+import { useTheme } from '../../core/dopebase';
 
 const dynamicStyles = (theme, appearance) => {
   const colorSet = theme.colors[appearance];
   const fontSizeSet = theme.fontSizes;
-  const {width, height} = Dimensions.get('window');
+  const { width, height } = Dimensions.get('window');
 
   return StyleSheet.create({
     flexRow: {
@@ -68,12 +68,14 @@ const dynamicStyles = (theme, appearance) => {
     },
     btnTextStyles: {
       fontFamily: 'Nunito-Bold',
+      color: colorSet.primaryBackground,
     },
     iconContainerStyle: {
       padding: 0,
     },
     iconStyle: {
       height: height * 0.04,
+      tintColor: colorSet.primaryText,
     },
     listItem: {
       borderBottomWidth: 1,
@@ -83,7 +85,6 @@ const dynamicStyles = (theme, appearance) => {
       alignItems: 'flex-end',
     },
     iconContainer: {
-      backgroundColor: '#40ABF6',
       width: 72,
       height: 72,
       justifyContent: 'center',
@@ -99,6 +100,19 @@ const dynamicStyles = (theme, appearance) => {
       fontFamily: 'Nunito-Regul0ar',
       fontWeight: '400',
       color: colorSet.secondaryText,
+    },
+    dataInfoText1: {
+      fontSize: 22,
+      color: 'white',
+      fontWeight: 'bold',
+    },
+    dataInfoText2: {
+      fontSize: 16,
+      color: '#4FC98F',
+    },
+    dataInfoText3: {
+      fontSize: 14,
+      color: '#CCCED5',
     },
   });
 };

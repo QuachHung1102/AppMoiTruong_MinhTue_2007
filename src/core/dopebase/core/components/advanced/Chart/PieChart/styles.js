@@ -37,6 +37,11 @@ const styles = (theme, appearance) => {
       fontSize: 14,
       color: 'white',
     },
+    dataBtnText: {
+      fontSize: 12,
+      color: colorSet.red,
+      textDecorationLine: 'underline',
+    },
     dotStyle: {
       height: 10,
       width: 10,
