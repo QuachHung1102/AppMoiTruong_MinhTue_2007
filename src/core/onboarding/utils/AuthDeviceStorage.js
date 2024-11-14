@@ -12,8 +12,8 @@ const getShouldShowOnboardingFlow = async () => {
     const result = await AsyncStorage.getItem(SHOULD_SHOW_ONBOARDING_FLOW);
     return result !== null ? false : true;
   } catch (err) {
-    console.log(err)
-  };
+    console.log(err);
+  }
 };
 
 /**
@@ -23,10 +23,10 @@ const getShouldShowOnboardingFlow = async () => {
  */
 const setShouldShowOnboardingFlow = async value => {
   try {
-    await AsyncStorage.setItem(SHOULD_SHOW_ONBOARDING_FLOW, value)
+    await AsyncStorage.setItem(SHOULD_SHOW_ONBOARDING_FLOW, value);
   } catch (err) {
-    console.log(err)
-  };
+    console.log(err);
+  }
 };
 
 const authDeviceStorage = {

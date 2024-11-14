@@ -1,12 +1,12 @@
-import React, {useMemo, useEffect} from 'react';
-import {Pressable} from 'react-native';
+import React, { useMemo, useEffect } from 'react';
+import { Pressable } from 'react-native';
 import Icon from '../../assets/images/svg/Svg';
-import {Text, View, useTheme, useTranslations} from '../../core/dopebase';
+import { Text, View, useTheme, useTranslations } from '../../core/dopebase';
 import dynamicStyles from './styles';
 
-const ListItem = ({item}) => {
-  const {localized} = useTranslations();
-  const {theme, appearance} = useTheme();
+const ListItem = ({ item }) => {
+  const { localized } = useTranslations();
+  const { theme, appearance } = useTheme();
   const colorSet = theme.colors[appearance];
   const styles = dynamicStyles(theme, appearance);
 
@@ -16,35 +16,35 @@ const ListItem = ({item}) => {
         {item.title === 'Xe hơi' && (
           <View
             br5
-            style={[styles.iconContainer, {backgroundColor: '#40ABF6'}]}>
+            style={[styles.iconContainer, { backgroundColor: '#40ABF6' }]}>
             <Icon.IconCar width={60} height={25} />
           </View>
         )}
         {item.title === 'Xe đạp' && (
           <View
             br5
-            style={[styles.iconContainer, {backgroundColor: '#40ABF6'}]}>
+            style={[styles.iconContainer, { backgroundColor: '#40ABF6' }]}>
             <Icon.IconBike width={60} height={30} />
           </View>
         )}
         {item.title === 'Dọn rác' && (
           <View
             br5
-            style={[styles.iconContainer, {backgroundColor: '#4FC98F'}]}>
+            style={[styles.iconContainer, { backgroundColor: '#4FC98F' }]}>
             <Icon.TraskIcon width={40} height={50} />
           </View>
         )}
         {item.title === 'Đi bộ' && (
           <View
             br5
-            style={[styles.iconContainer, {backgroundColor: '#40ABF6'}]}>
+            style={[styles.iconContainer, { backgroundColor: '#40ABF6' }]}>
             <Icon.WalkIcon width={40} height={50} />
           </View>
         )}
         {item.title === 'Bữa sáng' && (
           <View
             br5
-            style={[styles.iconContainer, {backgroundColor: '#615ECF'}]}>
+            style={[styles.iconContainer, { backgroundColor: '#615ECF' }]}>
             <Icon.BreackfastIcon width={40} height={50} />
           </View>
         )}
@@ -63,12 +63,12 @@ const ListItem = ({item}) => {
         </View>
         <View>
           <Pressable>
-            {({pressed}) => {
+            {({ pressed }) => {
               return (
                 <Text
                   style={
                     pressed
-                      ? [styles.textItemParagraph, {color: colorSet.red}]
+                      ? [styles.textItemParagraph, { color: colorSet.red }]
                       : styles.textItemParagraph
                   }>
                   Chỉnh sửa

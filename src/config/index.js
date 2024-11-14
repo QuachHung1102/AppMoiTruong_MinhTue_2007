@@ -1,7 +1,8 @@
-import React, {useContext} from 'react';
-import {Platform} from 'react-native';
-import {useTranslations} from '../core/dopebase';
-import {TrendingUpSvg, MapSvg, GlobeSvg, UserSvg} from '../assets/images/svg';
+import React, { useContext } from 'react';
+import { Platform } from 'react-native';
+import { useTranslations } from '../core/dopebase';
+import { TrendingUpSvg, MapSvg, GlobeSvg, UserSvg } from '../assets/images/svg';
+import Icon from '../assets/images/svg/Svg';
 
 const regexForNames = /^[a-zA-Z]{2,25}$/;
 const regexForVietnameseNames =
@@ -9,8 +10,11 @@ const regexForVietnameseNames =
 
 export const ConfigContext = React.createContext({});
 
-export const ConfigProvider = ({children}) => {
-  const {localized} = useTranslations();
+const PublicVehicleIcon = (width, height) => <Icon.PublicVihcleIcon width={width} height={height} />;
+const AppleIcon = (width, height) => <Icon.AppleIcon width={width} height={height} />;
+
+export const ConfigProvider = ({ children }) => {
+  const { localized } = useTranslations();
   const config = {
     isSMSAuthEnabled: true,
     isGoogleAuthEnabled: true,
@@ -147,8 +151,21 @@ export const ConfigProvider = ({children}) => {
           focus: UserSvg(1),
           unFocus: UserSvg(0),
         },
-        // Add more tabs as needed
       },
+      suggestList: [
+        {
+          icon: PublicVehicleIcon,
+          title: localized('Sử dụng phương tiện công cộng'),
+          descriptionValue: '19.8%',
+          descriptionText: 'phương tiện cá nhân',
+        },
+        {
+          icon: AppleIcon,
+          title: localized('Sử dụng thực phẩm hữu cơ'),
+          descriptionValue: '21.62%',
+          descriptionText: 'phương tiện cá nhân',
+        },
+      ],
       menuData: [
         {
           title: localized('Lịch làm việc'),
@@ -173,7 +190,7 @@ export const ConfigProvider = ({children}) => {
           icon: require('../assets/images/menu/curved.png'),
           navigateData: {
             name: 'HomeDrawer',
-            params: {screen: 'MainStack', params: {screen: 'Home'}},
+            params: { screen: 'MainStack', params: { screen: 'Home' } },
           },
         },
         {
@@ -181,7 +198,7 @@ export const ConfigProvider = ({children}) => {
           icon: require('../assets/images/menu/download.png'),
           navigateData: {
             name: 'HomeDrawer',
-            params: {screen: 'MainStack', params: {screen: 'QuanLy'}},
+            params: { screen: 'MainStack', params: { screen: 'QuanLy' } },
           },
         },
         {
@@ -204,7 +221,7 @@ export const ConfigProvider = ({children}) => {
           icon: require('../assets/images/menu/user-plus.png'),
           navigateData: {
             name: 'HomeDrawer',
-            params: {screen: 'MainStack', params: {screen: 'QuanLy'}},
+            params: { screen: 'MainStack', params: { screen: 'QuanLy' } },
           },
         },
         {
@@ -233,7 +250,7 @@ export const ConfigProvider = ({children}) => {
           icon: require('../assets/images/menu/document-filled.png'),
           navigateData: {
             name: 'HomeDrawer',
-            params: {screen: 'MainStack', params: {screen: 'QuanLy'}},
+            params: { screen: 'MainStack', params: { screen: 'QuanLy' } },
           },
         },
         {
@@ -241,7 +258,7 @@ export const ConfigProvider = ({children}) => {
           icon: require('../assets/images/menu/send-1.png'),
           navigateData: {
             name: 'HomeDrawer',
-            params: {screen: 'MainStack', params: {screen: 'QuanLy'}},
+            params: { screen: 'MainStack', params: { screen: 'QuanLy' } },
           },
         },
         {
@@ -249,7 +266,7 @@ export const ConfigProvider = ({children}) => {
           icon: require('../assets/images/menu/pinpaper-plus.png'),
           navigateData: {
             name: 'HomeDrawer',
-            params: {screen: 'MainStack', params: {screen: 'QuanLy'}},
+            params: { screen: 'MainStack', params: { screen: 'QuanLy' } },
           },
         },
         {
@@ -257,26 +274,26 @@ export const ConfigProvider = ({children}) => {
           icon: require('../assets/images/menu/settings.png'),
           navigateData: {
             name: 'HomeDrawer',
-            params: {screen: 'MainStack', params: {screen: 'Home'}},
+            params: { screen: 'MainStack', params: { screen: 'Home' } },
           },
         },
       ],
       CalendarFiltersBtn: [
-        {title: localized('Class')},
-        {title: localized('Exam')},
-        {title: localized('Group project')},
-        {title: localized('Meeting')},
-        {title: localized('Home work')},
-        {title: localized('Event')},
-        {title: localized('Other')},
+        { title: localized('Class') },
+        { title: localized('Exam') },
+        { title: localized('Group project') },
+        { title: localized('Meeting') },
+        { title: localized('Home work') },
+        { title: localized('Event') },
+        { title: localized('Other') },
       ],
       CalendarFiltersCheckboxStatus: [
-        {title: localized('In Progress')},
-        {title: localized('Unresolved')},
-        {title: localized('Completed')},
-        {title: localized('Cancelled')},
-        {title: localized('Overdue')},
-        {title: localized('Urgent')},
+        { title: localized('In Progress') },
+        { title: localized('Unresolved') },
+        { title: localized('Completed') },
+        { title: localized('Cancelled') },
+        { title: localized('Overdue') },
+        { title: localized('Urgent') },
       ],
     },
     tosLink: 'https://www.facebook.com/quachhuwng',

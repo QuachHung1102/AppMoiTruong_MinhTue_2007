@@ -59,7 +59,7 @@ export const DonutChart = memo(props => {
         <Text style={styles.dataInfoText2}>CO2</Text>
         <Pressable
           onPress={() => {
-            navigate.navigate('DetailScreen');
+            navigate.navigate('DetailScreen', { pieData, totalEmissionData });
           }}
         >
           {({ pressed }) => <Text style={pressed ? [styles.dataBtnText, { color: colorSet.disabledText }] : styles.dataBtnText}>Chi tiết</Text>}

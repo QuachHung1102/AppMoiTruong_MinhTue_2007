@@ -22,7 +22,7 @@ const dynamicStyles = (theme, appearance) => {
     text: {
       color: colorSet.primaryText,
       marginTop: 16,
-      fontSize: 18,
+      fontSize: fontSizeSet.m,
     },
     image: {
       height: 122,
@@ -50,10 +50,10 @@ const dynamicStyles = (theme, appearance) => {
       fontWeight: 'normal',
     },
     headerTitle: {
-      fontSize: width * 0.06,
+      fontSize: fontSizeSet.xl,
     },
     headerText: {
-      fontSize: width * 0.037,
+      fontSize: fontSizeSet.s,
       color: colorSet.secondText,
     },
     buttonContainer: {
@@ -102,17 +102,67 @@ const dynamicStyles = (theme, appearance) => {
       color: colorSet.secondaryText,
     },
     dataInfoText1: {
-      fontSize: 22,
-      color: 'white',
+      fontSize: fontSizeSet.xl,
+      color: colorSet.secondaryBackground,
       fontWeight: 'bold',
     },
     dataInfoText2: {
-      fontSize: 16,
-      color: '#4FC98F',
+      fontSize: fontSizeSet.m,
+      color: colorSet.thirText,
     },
     dataInfoText3: {
-      fontSize: 14,
+      fontSize: fontSizeSet.s,
       color: '#CCCED5',
+    },
+    detailInfoContainer: {
+      backgroundColor: colorSet.thirBackground,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    detailContent: {
+      height: width * 0.45,
+      width: width * 0.45,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderWidth: width * 0.04,
+      borderColor: '#4FC98F',
+      borderRadius: 100,
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    },
+    detailChartContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      height: height * 0.06,
+      position: 'relative',
+      backgroundColor: colorSet.primaryButtonTextNonActive,
+    },
+    detailChartBg: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      zIndex: -1,
+    },
+    suggestItem: {
+      columnGap: width * 0.025,
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+    },
+    suggestItemTextContainer: {
+    },
+    suggestItemTitle: {
+      fontSize: fontSizeSet.m,
+      color: colorSet.primaryText,
+    },
+    suggestItemText: {
+      width: '80%',
+      fontSize: fontSizeSet.s,
+      color: colorSet.secondText,
+    },
+    suggestItemTextValue: {
+      color: colorSet.thirText,
     },
   });
 };

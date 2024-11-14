@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     fontFamily: 'Nunito-Bold',
+    fontWeight: 'medium',
   },
   text2: {
     fontWeight: 'normal',

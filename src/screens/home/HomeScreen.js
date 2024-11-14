@@ -37,7 +37,6 @@ import ListItem from './listItem';
 
 import menuIcon from '../../assets/icons/menu1x.png';
 import updateDeviceStorage from '../../core/helpers/updateDeviceStorage';
-import Icon from '../../assets/images/svg/Svg';
 
 const { width, height } = Dimensions.get('window');
 
