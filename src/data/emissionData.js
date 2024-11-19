@@ -2,10 +2,10 @@ import isEmpty from 'lodash/isEmpty';
 import { getWeekDates } from '../core/helpers/getWeekDates';
 
 const today = new Date().toISOString().split('T')[0];
-const pastDate = getPastDate(8);
+const pastDate = getPastDate(7);
 const futureDates = getFutureDates(8);
 // Lấy chuỗi ngày tuyến tính
-const dates = [pastDate, today, ...futureDates];
+const dates = [...pastDate, today, ...futureDates];
 // const dates = [today, ...futureDates];
 
 // Lấy chuỗi ngày tuần

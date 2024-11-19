@@ -163,6 +163,10 @@ export const HomeScreen = memo(props => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: localized('Theo dõi'),
+      headerTitleStyle: {
+        textAlign: 'center',
+        fontFamily: 'Nunito-Bold',
+      },
       headerTitleAlign: 'center',
       headerLeft: _headerLeft,
       headerRight: _headerRight,
@@ -171,6 +175,7 @@ export const HomeScreen = memo(props => {
         borderBottomWidth: 0,
         // borderBottomColor: colorSet.hairline,
         height: height * 0.08,
+        elevation: 0,
       },
       headerTintColor: colorSet.primaryBackground,
     });
@@ -230,16 +235,19 @@ export const HomeScreen = memo(props => {
                 text={localized('Dinner')}
                 containerStyle={styles.buttonStyle}
                 textStyle={styles.btnTextStyles}
+                onPress={() => navigation.navigate('TrackMeal')}
               />
               <Button
                 text={localized('Lunch')}
                 containerStyle={styles.buttonStyle}
                 textStyle={styles.btnTextStyles}
+                onPress={() => navigation.navigate('TrackMeal')}
               />
               <Button
                 text={localized('Breakfast')}
                 containerStyle={styles.buttonStyle}
                 textStyle={styles.btnTextStyles}
+                onPress={() => navigation.navigate('TrackMeal')}
               />
             </View>
           </View>
@@ -248,8 +256,8 @@ export const HomeScreen = memo(props => {
               Lịch trình gần đây
             </Text>
             <TouchableIcon
-              iconSource={theme.icons.add}
-              onPress={handlePress}
+              iconSource={theme.icons.inscription}
+              onPress={() => navigation.navigate('ScheduleScreen')}
               imageStyle={styles.iconStyle}
               containerStyle={[styles.iconContainerStyle]}
             />
@@ -259,7 +267,7 @@ export const HomeScreen = memo(props => {
             text={'Today'}
             text2={currentDate}
           />
-          <View mb8>
+          <View>
             <ScrollView scrollEnabled={false}>
               {Array.isArray(phatThaiItems) &&
                 phatThaiItems.at(-1).data.map((item, index) => {

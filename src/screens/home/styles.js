@@ -74,7 +74,7 @@ const dynamicStyles = (theme, appearance) => {
       padding: 0,
     },
     iconStyle: {
-      height: height * 0.04,
+      width: width * 0.065,
       tintColor: colorSet.primaryText,
     },
     listItem: {
@@ -163,6 +163,11 @@ const dynamicStyles = (theme, appearance) => {
     },
     suggestItemTextValue: {
       color: colorSet.thirText,
+    },
+    trackHeaderSmTitle: {
+      textAlign: 'center',
+      fontSize: fontSizeSet.s,
+      color: colorSet.primaryBackground,
     },
   });
 };

@@ -2,7 +2,6 @@ import React, {
   memo,
   useEffect,
   useState,
-  useMemo,
   useLayoutEffect,
   useCallback,
   useRef,
@@ -81,7 +80,7 @@ export const DetailScreen = memo(props => {
       }
     };
     fetchCurrentDate();
-  }, [currentDate]);
+  }, []);
 
   useEffect(() => {
     if (isInitialized.current) {
@@ -149,6 +148,10 @@ export const DetailScreen = memo(props => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: localized('Chi tiết'),
+      headerTitleStyle: {
+        textAlign: 'center',
+        fontFamily: 'Nunito-Bold',
+      },
       headerTitleAlign: 'center',
       headerLeft: _headerLeft,
       headerRight: _headerRight,
@@ -157,6 +160,7 @@ export const DetailScreen = memo(props => {
         borderBottomWidth: 0,
         // borderBottomColor: colorSet.hairline,
         height: height * 0.08,
+        elevation: 0,
       },
       headerTintColor: colorSet.primaryBackground,
     });

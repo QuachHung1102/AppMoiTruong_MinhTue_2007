@@ -1,30 +1,31 @@
 import React from 'react';
-import {Dimensions, StyleSheet} from 'react-native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {useTranslations, View, useTheme} from '../core/dopebase';
+import { Dimensions, StyleSheet } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useTranslations, View, useTheme } from '../core/dopebase';
 import WorkoutStackNavigator from './WorkoutStackNavigator';
 import MentalStackNavigator from './MentalStackNavigator';
-import {useOnboardingConfig} from '../core/onboarding/hooks/useOnboardingConfig';
+import { useOnboardingConfig } from '../core/onboarding/hooks/useOnboardingConfig';
 
 import CalendarStackNavigator from './CalendarStackNavigator';
 import HomeDrawer from './HomeDrawerNavigator';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MainStack = createBottomTabNavigator();
 const MainStackNavigator = () => {
-  const {config} = useOnboardingConfig();
+  const { config } = useOnboardingConfig();
   const tabIcons = config.onboardingConfig.tabIcons;
-  const {localized} = useTranslations();
-  const {theme, appearance} = useTheme();
+  const { localized } = useTranslations();
+  const { theme, appearance } = useTheme();
   const colorSet = theme.colors[appearance];
   return (
-    <View style={{flex: 1, backgroundColor: colorSet.primaryBackground}}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colorSet.primaryBackground }}>
       <MainStack.Navigator
-        screenOptions={({route}) => ({
+        screenOptions={({ route }) => ({
           headerBackTitleVisible: false,
           headerBackTitle: localized('Back'),
           tabBarActiveTintColor: colorSet.primaryButtonTabActive,
           tabBarInactiveTintColor: colorSet.primaryButtonTextNonActive,
-          tabBarIcon: ({focused, color, size}) => {
+          tabBarIcon: ({ focused, color, size }) => {
             let icon;
             if (route.name === 'TheoDoi') {
               icon = focused ? (
@@ -93,32 +94,32 @@ const MainStackNavigator = () => {
           <MainStack.Screen
             name="TheoDoi"
             component={HomeDrawer}
-            options={{headerShown: false, tabBarLabel: 'Theo dõi'}}
+            options={{ headerShown: false, tabBarLabel: 'Theo dõi' }}
           />
           <MainStack.Screen
             name="ChienDich"
             component={CalendarStackNavigator}
-            options={{headerShown: false, tabBarLabel: 'Chiến dịch'}}
+            options={{ headerShown: false, tabBarLabel: 'Chiến dịch' }}
           />
           <MainStack.Screen
             name="QuanLy"
             component={WorkoutStackNavigator}
-            options={{headerShown: false, tabBarLabel: 'Cộng dồng'}}
+            options={{ headerShown: false, tabBarLabel: 'Cộng dồng' }}
           />
           <MainStack.Screen
             name="Send"
             component={MentalStackNavigator}
-            options={{headerShown: false, tabBarLabel: 'Tài khoản'}}
+            options={{ headerShown: false, tabBarLabel: 'Tài khoản' }}
           />
         </MainStack.Group>
       </MainStack.Navigator>
-    </View>
+    </SafeAreaView>
   );
 };
 
 export default MainStackNavigator;
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const style = StyleSheet.create({
   itemActiveStyle: {
