@@ -33,7 +33,6 @@ import {
   getCurrentDateFormatted,
 } from '../../core/helpers/timeFormat';
 import HeadingBlock from '../../components/HeadingBlock';
-import ListItem from './listItem';
 
 import menuIcon from '../../assets/icons/menu1x.png';
 import updateDeviceStorage from '../../core/helpers/updateDeviceStorage';
@@ -51,7 +50,7 @@ const fetchData = async (setItems, key) => {
   }
 };
 
-export const HomeScreen = memo(props => {
+export const CampaignScreen = memo(props => {
   const [items, setItems] = useState([]);
   const [phatThaiItems, setphatThaiItems] = useState([]);
   const isInitialized = useRef(false);
@@ -129,9 +128,9 @@ export const HomeScreen = memo(props => {
         <TouchableIcon
           imageStyle={{
             tintColor: colorSet.primaryBackground,
-            height: height * 0.045,
+            height: height * 0.035,
           }}
-          iconSource={theme.icons.add}
+          iconSource={theme.icons.bell}
           onPress={() => {
             console.log('Add icon');
           }}
@@ -208,11 +207,11 @@ export const HomeScreen = memo(props => {
               Hi Anh
             </Text>
             <Text style={{ color: colorSet.primaryBackground }}>
-              Bạn đã giảm thiểu{' '}
+              Bạn đã đăng ký{' '}
               <Text bold style={{ color: colorSet.thirText }}>
-                94kg CO2{' '}
+                1 chiến dịch{' '}
               </Text>
-              tháng này này
+              tháng này
             </Text>
           </View>
           <View>
@@ -220,61 +219,6 @@ export const HomeScreen = memo(props => {
           </View>
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <DonutChart pieData={items} />
-          {renderHeader()}
-          <View mh5 ph5 pv5 style={styles.flexRow}>
-            <View>
-              <Image
-                rounded
-                style={styles.image}
-                source={require('../../assets/images/backgroundImages/meal.png')}
-              />
-            </View>
-            <View style={styles.buttonContainer}>
-              <Button
-                text={localized('Dinner')}
-                containerStyle={styles.buttonStyle}
-                textStyle={styles.btnTextStyles}
-                onPress={() => navigation.navigate('TrackMealScreen', { meal: 'Bữa tối' })}
-              />
-              <Button
-                text={localized('Lunch')}
-                containerStyle={styles.buttonStyle}
-                textStyle={styles.btnTextStyles}
-                onPress={() => navigation.navigate('TrackMealScreen', { meal: 'Bữa trưa' })}
-              />
-              <Button
-                text={localized('Breakfast')}
-                containerStyle={styles.buttonStyle}
-                textStyle={styles.btnTextStyles}
-                onPress={() => navigation.navigate('TrackMealScreen', { meal: 'Bữa sáng' })}
-              />
-            </View>
-          </View>
-          <View ph5 style={styles.flexRow}>
-            <Text h3 style={{ fontWeight: 'normal' }}>
-              Lịch trình gần đây
-            </Text>
-            <TouchableIcon
-              iconSource={theme.icons.inscription}
-              onPress={() => navigation.navigate('ScheduleScreen')}
-              imageStyle={styles.iconStyle}
-              containerStyle={[styles.iconContainerStyle]}
-            />
-          </View>
-          <HeadingBlock
-            localized={localized}
-            text={'Today'}
-            text2={currentDate}
-          />
-          <View>
-            <ScrollView scrollEnabled={false}>
-              {Array.isArray(phatThaiItems) &&
-                phatThaiItems.at(-1).data.map((item, index) => {
-                  return <ListItem key={item.title + index} item={item} />;
-                })}
-            </ScrollView>
-          </View>
         </ScrollView>
       </View>
     );

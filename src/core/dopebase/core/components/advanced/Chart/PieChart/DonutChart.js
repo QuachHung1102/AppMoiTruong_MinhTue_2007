@@ -34,13 +34,13 @@ export const DonutChart = memo(props => {
             <Text style={{ color: 'white' }}>Di chuyển: {calculatePercentage(pieData[0].value, totalEmissionData)}%</Text>
           </View>
           <View style={styles.legendTextRight}>
-            {renderDot('#8F80F3')}
+            {renderDot('#3BE9DE')}
             <Text style={{ color: 'white' }}>Ăn uống: {calculatePercentage(pieData[1].value, totalEmissionData)}%</Text>
           </View>
         </View>
         <View style={[styles.lengendContaier, { marginBottom: 0 }]}>
           <View style={styles.legendText}>
-            {renderDot('#3BE9DE')}
+            {renderDot('#8F80F3')}
             <Text style={{ color: 'white' }}>Tái chế: {calculatePercentage(pieData[2].value, totalEmissionData)}%</Text>
           </View>
           <View style={styles.legendTextRight}>

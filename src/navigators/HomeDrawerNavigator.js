@@ -1,6 +1,6 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { HomeScreen, DetailScreen, ScheduleScreen, TrackMeal } from '../screens';
+import { HomeScreen, DetailScreen, ScheduleScreen, TrackMealScreen } from '../screens';
 import CustomDrawerContent from '../components/Drawer/CustomDrawer';
 
 const Drawer = createDrawerNavigator();
@@ -27,8 +27,8 @@ export default function HomeDrawer() {
         options={{ headerShown: true }}
       />
       <Drawer.Screen
-        name="TrackMeal"
-        component={TrackMeal}
+        name="TrackMealScreen"
+        component={TrackMealScreen}
         options={{ headerShown: true }}
       />
     </Drawer.Navigator>

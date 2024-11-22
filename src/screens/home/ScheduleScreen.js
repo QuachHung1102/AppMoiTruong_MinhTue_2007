@@ -12,7 +12,6 @@ import {
   Image,
 } from '../../core/dopebase';
 import dynamicStyles from './styles';
-import { head } from 'lodash';
 import updateDeviceStorage from '../../core/helpers/updateDeviceStorage';
 import { getCurrentDateFormatted } from '../../core/helpers/timeFormat';
 import ListItem from './listItem';

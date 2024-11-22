@@ -42,6 +42,8 @@ const dynamicStyles = (theme, appearance) => {
       alignItems: 'center',
       justifyContent: 'space-between',
       backgroundColor: colorSet.thirBackground,
+      borderBottomRightRadius: width * 0.04,
+      borderBottomLeftRadius: width * 0.04,
     },
     userName: {
       fontFamily: 'Nunito-Bold',
@@ -118,6 +120,8 @@ const dynamicStyles = (theme, appearance) => {
       backgroundColor: colorSet.thirBackground,
       alignItems: 'center',
       justifyContent: 'center',
+      borderBottomRightRadius: width * 0.04,
+      borderBottomLeftRadius: width * 0.04,
     },
     detailContent: {
       height: width * 0.45,
@@ -166,8 +170,39 @@ const dynamicStyles = (theme, appearance) => {
     },
     trackHeaderSmTitle: {
       textAlign: 'center',
-      fontSize: fontSizeSet.s,
-      color: colorSet.primaryBackground,
+      fontSize: fontSizeSet.m,
+    },
+    trackBgImg: {
+      width: width * 0.9,
+      height: height * 0.4,
+      alignSelf: 'center',
+      resizeMode: 'contain',
+    },
+    trackItem: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      borderBottomWidth: 1,
+      borderColor: colorSet.hairline,
+    },
+    trackItemImgContainer: {
+      // shadowColor: '#000',
+      // shadowOffset: {
+      //   width: 0,
+      //   height: 2,
+      // },
+      // shadowOpacity: 0.25,
+      // shadowRadius: 3.84,
+      // elevation: 5,
+    },
+    trackItemImgContainerTitle: {
+      fontSize: fontSizeSet.l,
+      fontWeight: '600',
+      color: colorSet.primaryText,
+    },
+    confirmButton: {
+      width: width * 0.9,
+      alignSelf: 'center',
     },
   });
 };

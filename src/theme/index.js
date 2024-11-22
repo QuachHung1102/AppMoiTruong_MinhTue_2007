@@ -22,6 +22,7 @@ const icons = {
   logout: require('../assets/icons/logout-drawer.png'),
   users_android: require('../assets/icons/users-icon-48.png'),
   user_android: require('../assets/icons/account-detail.png'),
+  warning_circle: require('../assets/icons/warning-circle.png'),
 };
 
 const lightColors = {

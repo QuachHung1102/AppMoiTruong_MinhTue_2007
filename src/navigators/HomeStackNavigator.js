@@ -8,6 +8,7 @@ import { useOnboardingConfig } from '../core/onboarding/hooks/useOnboardingConfi
 
 import CalendarStackNavigator from './CalendarStackNavigator';
 import HomeDrawer from './HomeDrawerNavigator';
+import CampaignStackNavigator from './CampaignStackNavigator';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MainStack = createBottomTabNavigator();
@@ -98,7 +99,7 @@ const MainStackNavigator = () => {
           />
           <MainStack.Screen
             name="ChienDich"
-            component={CalendarStackNavigator}
+            component={CampaignStackNavigator}
             options={{ headerShown: false, tabBarLabel: 'Chiến dịch' }}
           />
           <MainStack.Screen
