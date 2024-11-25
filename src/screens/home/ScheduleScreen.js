@@ -106,7 +106,7 @@ export const ScheduleScreen = memo((props) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: localized('Lịch trình'),
+      headerTitle: localized('Schudule'),
       headerTitleStyle: {
         textAlign: 'center',
         fontFamily: 'Nunito-Bold',
@@ -133,7 +133,7 @@ export const ScheduleScreen = memo((props) => {
     );
   } else {
     return (
-      <View fx1 style={{ backgroundColor: colorSet.primaryBackground }}>
+      <View fx1 style={{ backgroundColor: colorSet.secondaryBackground }}>
         <View ph5 pv5 style={styles.userInfoContainer}>
           <View>
             <Text h2 style={styles.userName}>

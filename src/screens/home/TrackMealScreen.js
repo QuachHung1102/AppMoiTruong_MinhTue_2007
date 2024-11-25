@@ -140,7 +140,7 @@ export const TrackMealScreen = memo((props) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: localized('Lịch trình'),
+      headerTitle: localized('Track Meals'),
       headerTitleStyle: {
         textAlign: 'center',
         fontFamily: 'Nunito-Bold',
@@ -183,7 +183,7 @@ export const TrackMealScreen = memo((props) => {
     );
   } else {
     return (
-      <View style={{ flex: 1, backgroundColor: colorSet.primaryBackground }}>
+      <View style={{ flex: 1, backgroundColor: colorSet.secondaryBackground }}>
         <ScrollView>
           <View pv2>
             <Text style={styles.trackHeaderSmTitle}>{localized(route.params.meal)}</Text>

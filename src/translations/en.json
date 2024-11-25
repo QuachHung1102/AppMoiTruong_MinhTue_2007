@@ -55,6 +55,8 @@
   "Sign in error": "Sign in error",
   "An error occurred while trying to load Profile Picture!": "An error occurred while trying to load Profile Picture!",
   "Please enter a valid phone number.": "Please enter a valid phone number.",
+  "Notifications": "Notifications",
+  "Details": "Details",
   "This code is invalid": "This code is invalid",
   "field(s) must not be empty or invalid!": "field(s) must not be empty or invalid!",
   "This user already exists.": "This user already exists.",
@@ -178,5 +180,9 @@
   "Completed": "Completed",
   "Cancelled": "Cancelled",
   "Overdue": "Overdue",
-  "Urgent": "Urgent"
+  "Urgent": "Urgent",
+  "Campaigns": "Campaigns",
+  "Monitor": "Monitor",
+  "Schudule": "Schudule",
+  "Track Meals": "Track Meals"
 }

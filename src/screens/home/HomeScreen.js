@@ -201,7 +201,7 @@ export const HomeScreen = memo(props => {
     );
   } else {
     return (
-      <View style={{ flex: 1, backgroundColor: colorSet.primaryBackground }}>
+      <View style={{ flex: 1, backgroundColor: colorSet.secondaryBackground }}>
         <View ph5 pv5 style={styles.userInfoContainer}>
           <View>
             <Text h2 style={styles.userName}>

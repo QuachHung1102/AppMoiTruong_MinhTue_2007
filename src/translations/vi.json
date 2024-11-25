@@ -55,6 +55,8 @@
   "You cancelled the sign in.": "Bạn đã hủy đăng nhập.",
   "Please try again!": "Vui lòng thử lại!",
   "Sign in error": "Lỗi đăng nhập",
+  "Notifications": "Thông báo",
+  "Details": "Chi tiết",
   "An error occurred while trying to load Profile Picture!": "Có lỗi xảy ra khi cố gắng tải hình ảnh hồ sơ!",
   "Please enter a valid phone number.": "Vui lòng nhập số điện thoại hợp lệ.",
   "This code is invalid": "Mã này không hợp lệ",
@@ -182,5 +184,9 @@
   "Completed": "Đã xong",
   "Cancelled": "Đã hủy",
   "Overdue": "Trễ",
-  "Urgent": "Gấp"
+  "Urgent": "Gấp",
+  "Campaigns": "Chiến dịch",
+  "Monitor": "Theo dõi",
+  "Schudule": "Lịch trình",
+  "Track Meals": "Theo dõi bữa ăn"
 }

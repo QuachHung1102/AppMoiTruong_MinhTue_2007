@@ -17,17 +17,21 @@ const icons = {
   cameraFilled: require('../assets/icons/camera-filled.png'),
   inscription: require('../assets/icons/inscription.png'),
   pinpoint: require('../assets/icons/pinpoint.png'),
+  pinpoint_fat: require('../assets/icons/pinpoint-fat.png'),
+  calendar_clock : require('../assets/icons/calendar-clock.png'),
   checked: require('../assets/icons/checked.png'),
   bell: require('../assets/icons/bell.png'),
   logout: require('../assets/icons/logout-drawer.png'),
   users_android: require('../assets/icons/users-icon-48.png'),
+  users_more: require('../assets/icons/users-more.png'),
+  user_plus: require('../assets/icons/user-plus.png'),
   user_android: require('../assets/icons/account-detail.png'),
   warning_circle: require('../assets/icons/warning-circle.png'),
 };
 
 const lightColors = {
   primaryBackground: '#ffffff',
-  secondaryBackground: '#ffffff',
+  secondaryBackground: '#F5F5F5',
   thirBackground: '#0F3D4B',
   forthBackground: '#414446',
   fifthBackground: '#B65A46',

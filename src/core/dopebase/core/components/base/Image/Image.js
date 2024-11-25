@@ -5,8 +5,8 @@ import { View } from '../View';
 import dynamicStyles from './styles';
 
 const DNImage = props => {
-  const { children, style, rounded, source } = props;
-  const viewStyles = [style, rounded ? { borderRadius: 100000 } : null];
+  const { children, style, source } = props;
+  const viewStyles = [style];
 
   return (
     <View {...props}>

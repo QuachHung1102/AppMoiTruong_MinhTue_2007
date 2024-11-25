@@ -6,7 +6,7 @@ const styles = (theme, appearance) => {
   const colorSet = theme.colors[appearance];
   return StyleSheet.create({
     container: {
-      backgroundColor: colorSet.primaryBackground,
+      backgroundColor: colorSet.secondaryBackground,
       flex: 1,
     },
     containerContent: {

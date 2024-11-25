@@ -7,7 +7,7 @@ import React, {
   useCallback,
   useRef,
 } from 'react';
-import { Dimensions, ScrollView, Alert } from 'react-native';
+import { Dimensions, ScrollView, Alert, TouchableOpacity } from 'react-native';
 import {
   View,
   Text,
@@ -20,8 +20,8 @@ import {
   SearchBar,
   Button,
   Switch,
-  DonutChart,
   Image,
+  ImageR,
 } from '../../core/dopebase';
 import { Avatar } from 'react-native-paper';
 import dynamicStyles from './styles';
@@ -32,10 +32,12 @@ import {
   getUnixTimeStamp,
   getCurrentDateFormatted,
 } from '../../core/helpers/timeFormat';
-import HeadingBlock from '../../components/HeadingBlock';
 
 import menuIcon from '../../assets/icons/menu1x.png';
 import updateDeviceStorage from '../../core/helpers/updateDeviceStorage';
+import { DropdownPicker } from '../../core/dopebase/forms/components';
+import SortSvg from '../../assets/images/svg/SortSvg';
+import { FlatList } from 'react-native-gesture-handler';
 
 const { width, height } = Dimensions.get('window');
 
@@ -51,23 +53,21 @@ const fetchData = async (setItems, key) => {
 };
 
 export const CampaignScreen = memo(props => {
-  const [items, setItems] = useState([]);
-  const [phatThaiItems, setphatThaiItems] = useState([]);
-  const isInitialized = useRef(false);
+  const [campaignData, setCampaignData] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(['Tất cả']);
   const { navigation } = props;
   const currentUser = useCurrentUser();
   const authManager = useAuth();
   const { localized } = useTranslations();
   const { theme, appearance } = useTheme();
   const colorSet = theme.colors[appearance];
+  const icons = theme.icons;
   const styles = dynamicStyles(theme, appearance);
   const [isLoading, setIsLoading] = useState(true);
   const [profilePictureFile, setProfilePictureFile] = useState(null);
   const [currentDate, setCurrentDate] = useState(null);
-  const [text, setText] = useState('');
-  const [truncateValue, setTruncateValue] = useState(7);
   const avatarSize = useMemo(() => {
-    return height * 0.075;
+    return height * 0.05;
   }, []);
 
   const handlePress = () => {
@@ -96,23 +96,14 @@ export const CampaignScreen = memo(props => {
   }, [currentDate]);
 
   useEffect(() => {
-    if (isInitialized.current) {
-      updateDeviceStorage.setStoreData('emissionsData', items);
-    } else {
-      isInitialized.current = true; // Đánh dấu rằng items đã được khởi tạo
-    }
-  }, [items]);
-
-  useEffect(() => {
-    fetchData(setItems, 'emissionsData');
-    fetchData(setphatThaiItems, 'phatThaiItems');
+    fetchData(setCampaignData, 'campaignData');
   }, []);
 
   useEffect(() => {
-    if (currentDate && items && phatThaiItems) {
+    if (currentDate && campaignData) {
       setIsLoading(false);
     }
-  }, [currentDate, items, phatThaiItems]);
+  }, [currentDate, campaignData]);
 
   // const onLogout = useCallback(() => {
   //   authManager?.logout(currentUser);
@@ -132,7 +123,7 @@ export const CampaignScreen = memo(props => {
           }}
           iconSource={theme.icons.bell}
           onPress={() => {
-            console.log('Add icon');
+            navigation.navigate('CampaignNotiScreen');
           }}
         />
       </View>
@@ -144,15 +135,6 @@ export const CampaignScreen = memo(props => {
   const _headerLeft = useCallback(
     () => (
       <View>
-        <TouchableIcon
-          imageStyle={{
-            tintColor: colorSet.primaryBackground,
-          }}
-          iconSource={menuIcon}
-          onPress={() => {
-            navigation.openDrawer();
-          }}
-        />
       </View>
     ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -161,7 +143,7 @@ export const CampaignScreen = memo(props => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: localized('Theo dõi'),
+      headerTitle: localized('Campaigns'),
       headerTitleStyle: {
         textAlign: 'center',
         fontFamily: 'Nunito-Bold',
@@ -181,16 +163,67 @@ export const CampaignScreen = memo(props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderHeader = () => (
-    <View ph5>
-      <Text style={[styles.headerTitle, styles.textCenter]}>
-        Theo dõi bữa ăn
-      </Text>
-      <Text style={[styles.textCenter, styles.headerText]}>
-        Tính toán lượng tiêu thụ hàng ngày của bạn
-      </Text>
+  const handleSelectItem = useCallback(item => {
+    setSelectedItem(item);
+  }, []);
+
+  const _renderCampaignItem = useCallback(({ item }) => (
+    <View style={styles.itemContainer}>
+      <View style={styles.itemBackgroundContainer}>
+        <Image source={{ uri: item.backgroundUrl }} style={styles.itemBackgroundImage}>
+          <View style={styles.itemBackgroundImageText}>
+            <ImageR mr1 source={icons.pinpoint_fat} style={{ width: width * 0.05, height: width * 0.05 }} />
+            <Text numberOfLines={1} style={styles.itemBackgroundText}>
+              {item.location}
+            </Text>
+            <ImageR mh1 source={icons.calendar_clock} style={{ width: width * 0.05, height: width * 0.05 }} />
+            <Text numberOfLines={1} style={styles.itemBackgroundText}>
+              {item.date}
+            </Text>
+          </View>
+        </Image>
+      </View>
+      <View ph2 pv1 style={styles.itemContentContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('CampaignDetailScreen', { item });
+          }}
+        >
+          <Text numberOfLines={1} style={styles.itemContentTitle}>{item.title}</Text>
+        </TouchableOpacity>
+        <View style={styles.flexRow}>
+          <View style={styles.slotContainer}>
+            <ImageR mh1 source={icons.users_more} style={{ width: width * 0.045, height: width * 0.045 }} />
+            <Text>{item.slotCurrent}{' / '}{item.slotTotal}</Text>
+          </View>
+          <View style={styles.slotContainer}>
+            <Text>Còn lại:</Text>
+            <Text>{item.timeRemaining} ngày</Text>
+          </View>
+        </View>
+        <View mv2 style={styles.progressContainer}>
+          <View />
+        </View>
+        <View style={styles.flexRow}>
+          <View style={styles.slotContainer}>
+            <Avatar.Text size={avatarSize} label="A" />
+            <Text>{item.userCreate}</Text>
+          </View>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('CampaignDetailScreen', { item });
+            }}
+          >
+            <View style={[styles.slotContainer, styles.itemBtn]}>
+              <ImageR source={icons.user_plus} style={{ width: width * 0.045, height: width * 0.045 }} />
+              <Text style={styles.itemBtnText}>Tham gia</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
-  );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  ), []);
 
   if (isLoading) {
     return (
@@ -200,7 +233,7 @@ export const CampaignScreen = memo(props => {
     );
   } else {
     return (
-      <View style={{ flex: 1, backgroundColor: colorSet.primaryBackground }}>
+      <View fx1 style={{ backgroundColor: colorSet.secondaryBackground }}>
         <View ph5 pv5 style={styles.userInfoContainer}>
           <View>
             <Text h2 style={styles.userName}>
@@ -218,8 +251,30 @@ export const CampaignScreen = memo(props => {
             <Avatar.Text size={avatarSize} label="A" />
           </View>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false}>
-        </ScrollView>
+        <View fx1>
+          <View ph5 style={styles.flexRow}>
+            <DropdownPicker
+              title={'Bộ lọc:'}
+              items={['Tất cả', 'Lân cận', 'Sắp hết hạn', 'Đã đăng ký']}
+              onSelectItem={handleSelectItem}
+              allowMultipleSelection={false}
+              selectedItemsList={selectedItem}
+            />
+            <TouchableOpacity>
+              <SortSvg width={width * 0.08} height={width * 0.08} color={'#808797'} />
+            </TouchableOpacity>
+          </View>
+          <FlatList
+            data={campaignData}
+            keyExtractor={(item, index) => String(index + item)}
+            renderItem={_renderCampaignItem}
+            ItemSeparatorComponent={<View style={{ height: height * 0.025 }} />}
+            ListFooterComponent={<View />}
+            ListFooterComponentStyle={{ height: height * 0.025 }}
+            showsVerticalScrollIndicator={false}
+            style={{ width: '90%', alignSelf: 'center' }}
+          />
+        </View>
       </View>
     );
   }

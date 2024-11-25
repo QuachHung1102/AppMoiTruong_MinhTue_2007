@@ -147,7 +147,7 @@ export const DetailScreen = memo(props => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTitle: localized('Chi tiết'),
+      headerTitle: localized('Details'),
       headerTitleStyle: {
         textAlign: 'center',
         fontFamily: 'Nunito-Bold',
@@ -179,7 +179,7 @@ export const DetailScreen = memo(props => {
     );
   } else {
     return (
-      <View style={{ flex: 1, backgroundColor: colorSet.primaryBackground }}>
+      <View style={{ flex: 1, backgroundColor: colorSet.secondaryBackground }}>
         <ScrollView>
           <ImageBackground
             source={require('../../assets/images/backgroundImages/DetailBg.png')}

@@ -19,7 +19,7 @@ const MainStackNavigator = () => {
   const { theme, appearance } = useTheme();
   const colorSet = theme.colors[appearance];
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colorSet.primaryBackground }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colorSet.secondaryBackground }}>
       <MainStack.Navigator
         screenOptions={({ route }) => ({
           headerBackTitleVisible: false,
@@ -72,7 +72,7 @@ const MainStackNavigator = () => {
             return icon;
           },
           tabBarStyle: {
-            backgroundColor: colorSet.secondaryBackground,
+            backgroundColor: colorSet.primaryBackground,
             height: Dimensions.get('window').height * 0.08,
             paddingTop: height * 0.01,
             paddingBottom: height * 0.01,

@@ -3,16 +3,16 @@ import { StyleSheet, Platform, Dimensions } from 'react-native'
 const dynamicStyles = (theme, colorScheme) => {
   const colorSet = theme.colors[colorScheme]
   const windowWidth = Dimensions.get('window').width
+  const windowHeight = Dimensions.get('window').height
   return StyleSheet.create({
     container: {
       zIndex: 99,
-      marginLeft: 30,
-      marginTop: 25,
       ...Platform.select({
         web: {
           flexDirection: 'row',
         },
       }),
+      marginVertical: windowHeight * 0.025,
     },
     titleContainer: {
       ...Platform.select({
@@ -28,14 +28,15 @@ const dynamicStyles = (theme, colorScheme) => {
           textAlign: 'right',
         },
         default: {
-          marginBottom: 20,
+          marginBottom: windowHeight * 0.015,
           textAlign: 'left',
         },
       }),
-      marginTop: 24,
+      marginTop: windowHeight * 0.0125,
       fontSize: 16,
-      color: colorSet.secondaryText,
-      fontWeight: '500',
+      color: colorSet.primaryText,
+      fontWeight: '600',
+      fontFamily: 'Nunito-Bold',
     },
     selectedItemContainer: {
       ...Platform.select({
@@ -55,10 +56,10 @@ const dynamicStyles = (theme, colorScheme) => {
       justifyContent: 'center',
       height: 42,
       borderColor: colorSet.grey9,
-      paddingLeft: 20,
+      paddingLeft: 10,
     },
     listContainer: {
-      width: '100%',
+      width: windowWidth * 0.45,
       zIndex: 9999,
     },
 
@@ -71,7 +72,7 @@ const dynamicStyles = (theme, colorScheme) => {
           borderRadius: 10,
         },
         default: {
-          width: '85%',
+          width: windowWidth * 0.4,
           borderRadius: 25,
         },
       }),
@@ -103,13 +104,14 @@ const dynamicStyles = (theme, colorScheme) => {
       borderBottomColor: colorSet.grey3,
     },
     itemText: {
-      color: Platform.OS === 'web' ? colorSet.secondaryText : colorSet.grey9,
-      fontSize: 18,
+      color: Platform.OS === 'web' ? colorSet.secondaryText : colorSet.primaryText,
+      fontSize: 16,
+      fontFamily: 'Nunito-Regular',
     },
     checkbox: {
       margin: 8,
     },
-  })
-}
+  });
+};
 
-export default dynamicStyles
+export default dynamicStyles;

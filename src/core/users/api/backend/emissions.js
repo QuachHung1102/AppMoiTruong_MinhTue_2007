@@ -1,5 +1,6 @@
 import updateDeviceStorage from '../../../helpers/updateDeviceStorage';
 import { phatThaiItems } from '../../../../data/emissionData';
+import { campaignData } from '../../../../data/campaignData';
 
 const emissionsAPI = 'https://reactnative.dev/movies.json'; // phần này sẽ được sửa khi có data
 
@@ -78,6 +79,7 @@ export const fetchEmissionsData = async () => {
       const etag = new Date().toISOString().split('T')[0];
       await updateDeviceStorage.setStoreData('emissionsData', emissionsData); // phần này sẽ được sửa khi có data
       await updateDeviceStorage.setStoreData('phatThaiItems', phatThaiItems);
+      await updateDeviceStorage.setStoreData('campaignData', campaignData);
       await updateDeviceStorage.setStoreData('emissionsDataETag', etag);
     } else if (response.status === 304) {
       console.log('Data not modified');

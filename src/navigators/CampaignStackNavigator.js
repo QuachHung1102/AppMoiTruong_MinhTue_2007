@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { CampaignScreen } from '../screens';
+import { CampaignScreen, CampaignNotiScreen, CampaignDetailScreen } from '../screens';
 
 const CampaignStack = createStackNavigator();
 
@@ -15,6 +15,8 @@ const CampaignStackNavigator = () => {
         }}
       >
         <CampaignStack.Screen name="CampaignScreen" component={CampaignScreen} />
+        <CampaignStack.Screen name="CampaignNotiScreen" component={CampaignNotiScreen} />
+        <CampaignStack.Screen name="CampaignDetailScreen" component={CampaignDetailScreen} />
       </CampaignStack.Group>
     </CampaignStack.Navigator>
   );
