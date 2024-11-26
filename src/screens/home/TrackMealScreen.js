@@ -168,7 +168,7 @@ export const TrackMealScreen = memo((props) => {
         </View>
         <View>
           <Text style={styles.trackItemImgContainerTitle}>{localized(title)}</Text>
-          <Text style={{ color: colorSet.secondaryText }}>Trung bình <Text style={{ color: colorSet.thirText }}>{item[1].toFixed(2)}kg CO2</Text> một ngày</Text>
+          <Text style={{ color: colorSet.secondaryText }}>Trung bình <Text style={{ color: colorSet.thirText }}>{item[1].toFixed(2)}kg CO₂</Text> một ngày</Text>
         </View>
       </View>
     );

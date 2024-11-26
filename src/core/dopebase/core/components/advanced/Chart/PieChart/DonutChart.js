@@ -56,7 +56,7 @@ export const DonutChart = memo(props => {
     return (
       <View style={styles.containerDatainfo}>
         <Text style={styles.dataInfoText1}>{totalEmissionData}kg</Text>
-        <Text style={styles.dataInfoText2}>CO2</Text>
+        <Text style={styles.dataInfoText2}>CO₂</Text>
         <Pressable
           onPress={() => {
             navigate.navigate('DetailScreen', { pieData, totalEmissionData });

@@ -55,6 +55,8 @@ const dynamicStyles = (theme, appearance) => {
       fontSize: fontSizeSet.l,
       fontWeight: '600',
       textAlign: 'center',
+      width: '70%',
+      alignSelf: 'center',
     },
     itemContainer: {
       height: height * 0.4,
@@ -114,6 +116,11 @@ const dynamicStyles = (theme, appearance) => {
       height: width * 0.015,
       borderRadius: width * 0.01,
     },
+    progressContainer2: {
+      backgroundColor: colorSet.thirBackground,
+      height: width * 0.015,
+      borderRadius: width * 0.01,
+    },
     itemBtn: {
       backgroundColor: colorSet.thirBackground,
       borderRadius: width * 0.02,
@@ -154,6 +161,41 @@ const dynamicStyles = (theme, appearance) => {
     notiItemText2: {
       color: colorSet.secondaryText,
       fontSize: fontSizeSet.xs,
+    },
+    campaignDetailImg: {
+      overflow: 'hidden',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 5,
+      },
+      shadowOpacity: 0.34,
+      shadowRadius: 6.27,
+
+      elevation: 10,
+    },
+    textL: {
+      fontWeight: '600',
+      fontSize: fontSizeSet.l,
+    },
+    textXL: {
+      fontWeight: '600',
+      fontSize: fontSizeSet.xl,
+    },
+    iconContainer: {
+      width: 72,
+      height: 72,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    joinBtn: {
+      width: width * 0.15,
+      height: width * 0.15,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: width * 0.015,
+      borderWidth: 2,
+      borderColor: colorSet.hairline,
     },
   });
 };

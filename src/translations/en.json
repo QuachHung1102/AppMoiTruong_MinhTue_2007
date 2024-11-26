@@ -57,6 +57,9 @@
   "Please enter a valid phone number.": "Please enter a valid phone number.",
   "Notifications": "Notifications",
   "Details": "Details",
+  "Time": "Time",
+  "Location": "Location",
+  "Description": "Description",
   "This code is invalid": "This code is invalid",
   "field(s) must not be empty or invalid!": "field(s) must not be empty or invalid!",
   "This user already exists.": "This user already exists.",
@@ -184,5 +187,7 @@
   "Campaigns": "Campaigns",
   "Monitor": "Monitor",
   "Schudule": "Schudule",
-  "Track Meals": "Track Meals"
+  "Track Meals": "Track Meals",
+  "Advantage": "Advantage",
+  "Campaign details": "Campaign details"
 }

@@ -59,7 +59,7 @@ const ListItem = ({ item }) => {
       <View style={styles.listItemRight}>
         <View style={styles.flexRow}>
           <Text mr1>{item.km || item.kg}kg</Text>
-          <Text>CO2</Text>
+          <Text>CO₂</Text>
         </View>
         <View>
           <Pressable>

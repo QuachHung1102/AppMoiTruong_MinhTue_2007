@@ -202,7 +202,7 @@ export const CampaignScreen = memo(props => {
           </View>
         </View>
         <View mv2 style={styles.progressContainer}>
-          <View />
+          <View style={[styles.progressContainer2, { width: `${(item.slotCurrent / item.slotTotal) * 100}%` }]} />
         </View>
         <View style={styles.flexRow}>
           <View style={styles.slotContainer}>

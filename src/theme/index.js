@@ -27,6 +27,7 @@ const icons = {
   user_plus: require('../assets/icons/user-plus.png'),
   user_android: require('../assets/icons/account-detail.png'),
   warning_circle: require('../assets/icons/warning-circle.png'),
+  heart: require('../assets/icons/heart.png'),
 };
 
 const lightColors = {
@@ -44,6 +45,7 @@ const lightColors = {
   primaryText: '#151723',
   secondaryText: '#7e7e7e',
   thirText: '#4FC98F',
+  fourthText: '#615ECF',
   hairline: '#e0e0e0',
   grey0: '#fafafa',
   grey3: '#f5f5f5',
@@ -81,6 +83,7 @@ const MobileTheme = {
       primaryText: '#ffffff',
       secondaryText: '#c5c5c5',
       thirText: '#4FC98F',
+      fourthText: '#615ECF',
       hairline: '#222222',
       grey0: '#0a0a0a',
       grey3: '#2a2a2a',

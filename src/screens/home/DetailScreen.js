@@ -189,7 +189,7 @@ export const DetailScreen = memo(props => {
             <View style={styles.detailInfoContainer}>
               <View mv5 style={styles.detailContent}>
                 <Text style={styles.dataInfoText1}>{totalEmissionData} kg</Text>
-                <Text style={styles.dataInfoText2}>CO2</Text>
+                <Text style={styles.dataInfoText2}>CO₂</Text>
                 <Text style={styles.dataInfoText3}>Tháng này</Text>
               </View>
             </View>
@@ -201,7 +201,7 @@ export const DetailScreen = memo(props => {
                 <View ml3 style={styles.flexRow}>
                   <Icon.WalkIcon width={width * 0.06} height={width * 0.06} />
                   <Text pv3 ph3>
-                    {Math.round(pieData[0].value * 100) / 100} kg CO2
+                    {Math.round(pieData[0].value * 100) / 100} kg CO₂
                   </Text>
                 </View>
                 <View mr3>
@@ -213,7 +213,7 @@ export const DetailScreen = memo(props => {
                 <View ml3 style={styles.flexRow}>
                   <Icon.TraskIcon width={width * 0.06} height={width * 0.06} />
                   <Text pv3 ph3>
-                    {Math.round(pieData[1].value * 100) / 100} kg CO2
+                    {Math.round(pieData[1].value * 100) / 100} kg CO₂
                   </Text>
                 </View>
                 <View mr3>
@@ -225,7 +225,7 @@ export const DetailScreen = memo(props => {
                 <View ml3 style={styles.flexRow}>
                   <Icon.BreackfastIcon width={width * 0.06} height={width * 0.06} />
                   <Text pv3 ph3>
-                    {Math.round(pieData[2].value * 100) / 100} kg CO2
+                    {Math.round(pieData[2].value * 100) / 100} kg CO₂
                   </Text>
                 </View>
                 <View mr3>

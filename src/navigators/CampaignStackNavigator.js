@@ -16,7 +16,6 @@ const CampaignStackNavigator = () => {
       >
         <CampaignStack.Screen name="CampaignScreen" component={CampaignScreen} />
         <CampaignStack.Screen name="CampaignNotiScreen" component={CampaignNotiScreen} />
-        <CampaignStack.Screen name="CampaignDetailScreen" component={CampaignDetailScreen} />
       </CampaignStack.Group>
     </CampaignStack.Navigator>
   );

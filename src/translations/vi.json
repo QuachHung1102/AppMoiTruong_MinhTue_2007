@@ -57,6 +57,9 @@
   "Sign in error": "Lỗi đăng nhập",
   "Notifications": "Thông báo",
   "Details": "Chi tiết",
+  "Time": "Thời gian",
+  "Location": "Địa điểm",
+  "Description": "Mô tả",
   "An error occurred while trying to load Profile Picture!": "Có lỗi xảy ra khi cố gắng tải hình ảnh hồ sơ!",
   "Please enter a valid phone number.": "Vui lòng nhập số điện thoại hợp lệ.",
   "This code is invalid": "Mã này không hợp lệ",
@@ -188,5 +191,7 @@
   "Campaigns": "Chiến dịch",
   "Monitor": "Theo dõi",
   "Schudule": "Lịch trình",
-  "Track Meals": "Theo dõi bữa ăn"
+  "Track Meals": "Theo dõi bữa ăn",
+  "Advantage": "Lợi ích",
+  "Campaign details": "Chi tiết chiến dịch"
 }

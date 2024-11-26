@@ -142,7 +142,7 @@ export const ScheduleScreen = memo((props) => {
             <Text style={{ color: colorSet.primaryBackground }}>
               Bạn đã giảm thiểu{' '}
               <Text bold style={{ color: colorSet.thirText }}>
-                94kg CO2{' '}
+                94kg CO₂{' '}
               </Text>
               tháng này này
             </Text>

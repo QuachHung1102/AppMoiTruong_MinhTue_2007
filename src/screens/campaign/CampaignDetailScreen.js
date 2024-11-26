@@ -32,6 +32,8 @@ import {
   getCurrentDateFormatted,
 } from '../../core/helpers/timeFormat';
 import HeadingBlock from '../../components/HeadingBlock';
+import Icon from '../../assets/images/svg/Svg';
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -47,6 +49,9 @@ export const CampaignDetailScreen = memo(props => {
   const styles = dynamicStyles(theme, appearance);
   const [isLoading, setIsLoading] = useState(true);
   const [currentDate, setCurrentDate] = useState(null);
+  const avatarSize = useMemo(() => {
+    return height * 0.08;
+  }, []);
 
   const handlePress = () => {
     Alert.alert('Ố la la', 'This feature is not implemented yet');
@@ -156,11 +161,13 @@ export const CampaignDetailScreen = memo(props => {
   } else {
     return (
       <View fx1 style={{ backgroundColor: colorSet.secondaryBackground }}>
-        <ScrollView>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+        >
           <View mt2>
             <Text numberOfLines={1} style={styles.title}>{item.title}</Text>
           </View>
-          <View pv3 ph4 style={{ backgroundColor: 'red' }}>
+          <View mv3 mh5 br3 style={styles.campaignDetailImg}>
             <Image
               source={{ uri: item.backgroundUrl }}
               rounded
@@ -168,6 +175,69 @@ export const CampaignDetailScreen = memo(props => {
                 height: height * 0.3,
                 borderRadius: width * 0.04,
               }} />
+          </View>
+          <View mh5>
+            <View mt2>
+              <View style={styles.flexRow}>
+                <Text style={[styles.textL, { color: colorSet.fourthText }]}>{localized('Location')}:</Text>
+                <Text style={{ color: colorSet.secondaryText }}>{item.location}</Text>
+              </View>
+              <View style={styles.flexRow}>
+                <Text style={[styles.textL, { color: colorSet.fourthText }]}>{localized('Time')}:</Text>
+                <Text style={{ color: colorSet.secondaryText }}>{item.date}</Text>
+              </View>
+            </View>
+            <View mt3 style={styles.flexRow}>
+              <View style={styles.slotContainer}>
+                <ImageR mh1 source={icons.users_more} style={{ width: width * 0.045, height: width * 0.045 }} />
+                <Text>{item.slotCurrent}{' / '}{item.slotTotal}</Text>
+              </View>
+              <View style={styles.slotContainer}>
+                <Text>Còn lại:</Text>
+                <Text>{item.timeRemaining} ngày</Text>
+              </View>
+            </View>
+            <View mv2 style={styles.progressContainer}>
+              <View style={[styles.progressContainer2, { width: `${(item.slotCurrent / item.slotTotal) * 100}%` }]} />
+            </View>
+          </View>
+          <View mt3>
+            <Text mh5 style={[styles.textL, { color: colorSet.primaryText }]}>{localized('Description')}</Text>
+            <Text mh5 mt2 style={{ color: colorSet.secondaryText }}>{'\t'}{item.des}</Text>
+          </View>
+          <View mt3>
+            <Text mh5 style={[styles.textL, { color: colorSet.primaryText }]}>{localized('Advantage')}</Text>
+            <View mt4 style={[styles.flexRow, { justifyContent: 'center', columnGap: width * 0.05 }]}>
+              <View
+                br5
+                style={[styles.iconContainer, { backgroundColor: '#4FC98F' }]}>
+                <Icon.TraskIcon width={40} height={50} />
+              </View>
+              <View>
+                <Text style={[styles.textL, { color: colorSet.secondaryText }]}>Giảm thiểu</Text>
+                <Text style={[styles.textXL, { color: colorSet.thirText }]}>1.7 kg CO₂</Text>
+              </View>
+            </View>
+          </View>
+          <View mt3>
+            <Text mh5 style={[styles.textL, { color: colorSet.primaryText }]}>{localized('Campaign details')}</Text>
+            <Text mh5 mt2 style={{ color: colorSet.secondaryText }}>Chiến dịch bắt đầu vào: {item.date}</Text>
+            <Text mh5 mt2 style={{ color: colorSet.secondaryText }}>{item.detailCampaign}</Text>
+          </View>
+          <View mv5 style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+            <Avatar.Text size={avatarSize} label={item.userCreate.at(-1)} />
+            <Text mt2 style={[styles.textL, { color: colorSet.primaryText }]}>{item.userCreate}</Text>
+          </View>
+          <View ph5 pv5 style={[styles.flexRow, { columnGap: width * 0.05, backgroundColor: colorSet.primaryBackground }]}>
+            <Button fx1 containerStyle={{ height: width * 0.15 }} text={localized('Đăng ký tham gia')} onPress={handlePress} />
+            <TouchableIcon
+              iconSource={icons.heart}
+              onPress={handlePress}
+              containerStyle={styles.joinBtn}
+            />
           </View>
         </ScrollView>
       </View>
