@@ -143,11 +143,11 @@ export const ConfigProvider = ({ children }) => {
           focus: MapSvg(1),
           unFocus: MapSvg(0),
         },
-        QuanLy: {
+        CongDong: {
           focus: GlobeSvg(1),
           unFocus: GlobeSvg(0),
         },
-        Send: {
+        TaiKhoan: {
           focus: UserSvg(1),
           unFocus: UserSvg(0),
         },

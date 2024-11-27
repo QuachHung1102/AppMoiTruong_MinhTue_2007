@@ -152,6 +152,10 @@ export const CampaignDetailScreen = memo(props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const goToUserCampaignScreen = useCallback(() => {
+    navigation.navigate('CongDong', { screen: 'UserCampaignScreen' });
+  }, []);
+
   if (isLoading) {
     return (
       <View style={styles.container}>
@@ -228,8 +232,12 @@ export const CampaignDetailScreen = memo(props => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-            <Avatar.Text size={avatarSize} label={item.userCreate.at(-1)} />
-            <Text mt2 style={[styles.textL, { color: colorSet.primaryText }]}>{item.userCreate}</Text>
+            <TouchableOpacity onPress={goToUserCampaignScreen}>
+              <Avatar.Text size={avatarSize} label={item.userCreate.split(' ').at(-1)[0]} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={goToUserCampaignScreen}>
+              <Text mt2 style={[styles.textL, { color: colorSet.primaryText }]}>{item.userCreate}</Text>
+            </TouchableOpacity>
           </View>
           <View ph5 pv5 style={[styles.flexRow, { columnGap: width * 0.05, backgroundColor: colorSet.primaryBackground }]}>
             <Button fx1 containerStyle={{ height: width * 0.15 }} text={localized('Đăng ký tham gia')} onPress={handlePress} />

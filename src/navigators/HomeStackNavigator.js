@@ -2,7 +2,6 @@ import React from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTranslations, View, useTheme } from '../core/dopebase';
-import WorkoutStackNavigator from './WorkoutStackNavigator';
 import MentalStackNavigator from './MentalStackNavigator';
 import { useOnboardingConfig } from '../core/onboarding/hooks/useOnboardingConfig';
 
@@ -10,6 +9,7 @@ import CalendarStackNavigator from './CalendarStackNavigator';
 import HomeDrawer from './HomeDrawerNavigator';
 import CampaignStackNavigator from './CampaignStackNavigator';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import CommunityStackNavigator from './CommunityStackNavigator';
 
 const MainStack = createBottomTabNavigator();
 const MainStackNavigator = () => {
@@ -44,21 +44,21 @@ const MainStackNavigator = () => {
               ) : (
                 tabIcons['ChienDich'].unFocus
               );
-            } else if (route.name === 'QuanLy') {
+            } else if (route.name === 'CongDong') {
               icon = focused ? (
                 <View ph2 pv2 style={style.itemActiveStyle}>
-                  {tabIcons['QuanLy'].focus}
+                  {tabIcons['CongDong'].focus}
                 </View>
               ) : (
-                tabIcons['QuanLy'].unFocus
+                  tabIcons['CongDong'].unFocus
               );
-            } else if (route.name === 'Send') {
+            } else if (route.name === 'TaiKhoan') {
               icon = focused ? (
                 <View ph2 pv2 style={style.itemActiveStyle}>
-                  {tabIcons['Send'].focus}
+                  {tabIcons['TaiKhoan'].focus}
                 </View>
               ) : (
-                tabIcons['Send'].unFocus
+                  tabIcons['TaiKhoan'].unFocus
               );
             } else if (route.name === 'CaNhan') {
               icon = focused ? (
@@ -103,12 +103,12 @@ const MainStackNavigator = () => {
             options={{ headerShown: false, tabBarLabel: 'Chiến dịch' }}
           />
           <MainStack.Screen
-            name="QuanLy"
-            component={WorkoutStackNavigator}
+            name="CongDong"
+            component={CommunityStackNavigator}
             options={{ headerShown: false, tabBarLabel: 'Cộng dồng' }}
           />
           <MainStack.Screen
-            name="Send"
+            name="TaiKhoan"
             component={MentalStackNavigator}
             options={{ headerShown: false, tabBarLabel: 'Tài khoản' }}
           />

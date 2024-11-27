@@ -5,6 +5,7 @@ import { TrackMealScreen } from './home/TrackMealScreen';
 import { CampaignScreen } from './campaign/CampaignScreen';
 import { CampaignNotiScreen } from './campaign/CampaignNotiScreen';
 import { CampaignDetailScreen } from './campaign/CampaignDetailScreen';
+import { UserCampaignScreen } from './community/userCampaignScreen';
 import { CalendarScreen } from './calendar/CalendarScreen';
 import { CalendarFullScreen } from './calendar/CalendarFullScreen';
 import { CalendarFilters } from './calendar/CalendarFilters';
@@ -16,6 +17,7 @@ export {
   CampaignScreen,
   CampaignNotiScreen,
   CampaignDetailScreen,
+  UserCampaignScreen,
   CalendarScreen,
   CalendarFullScreen,
   CalendarFilters,
