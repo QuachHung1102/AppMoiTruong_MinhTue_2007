@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
-import { UserCampaignScreen } from '../screens';
+import { UserCampaignScreen, CommunityScreen } from '../screens';
 
 const CommunityStack = createStackNavigator();
 
@@ -14,19 +14,18 @@ const CommunityStackNavigator = () => {
         cardShadowEnabled: false,
         headerShown: false,
       }}
-      initialRouteName="UserCampaignScreen"
+      initialRouteName="CommunityScreen"
     >
+      <CommunityStack.Screen
+        options={{ headerShown: true }}
+        name="CommunityScreen"
+        component={CommunityScreen}
+      />
       <CommunityStack.Screen
         options={{ headerShown: true }}
         name="UserCampaignScreen"
         component={UserCampaignScreen}
       />
-      {/* <CommunityStack.Screen
-        options={{ headerShown: false }}
-        name="Question"
-        component={QuestionScreen}
-      /> */}
-
     </CommunityStack.Navigator>
   )
 };

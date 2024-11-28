@@ -1,30 +1,30 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
-import { MentalScreen } from '../screens';
+import { UserScreen } from '../screens';
 
-const MentalStack = createStackNavigator();
+const UserStack = createStackNavigator();
 
-const MentalStackNavigator = () => {
+const UserStackNavigator = () => {
   return (
-    <MentalStack.Navigator
+    <UserStack.Navigator
       screenOptions={{
         headerBackTitleVisible: false,
         cardStyle: { backgroundColor: '#FFFFFF' },
         cardShadowEnabled: false,
         headerShown: false,
       }}
-      initialRouteName="MentalScreen"
+      initialRouteName="UserScreen"
     >
-      <MentalStack.Screen
+      <UserStack.Screen
         options={{ headerShown: true }}
-        name="MentalScreen"
-        component={MentalScreen}
+        name="UserScreen"
+        component={UserScreen}
       />
 
 
-    </MentalStack.Navigator>
+    </UserStack.Navigator>
   )
 };
 
-export default MentalStackNavigator;
+export default UserStackNavigator;

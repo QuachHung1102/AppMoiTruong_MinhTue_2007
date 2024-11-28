@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTranslations, View, useTheme } from '../core/dopebase';
-import MentalStackNavigator from './MentalStackNavigator';
+import MentalStackNavigator from './UserStackNavigator';
 import { useOnboardingConfig } from '../core/onboarding/hooks/useOnboardingConfig';
 
 import CalendarStackNavigator from './CalendarStackNavigator';
@@ -10,6 +10,7 @@ import HomeDrawer from './HomeDrawerNavigator';
 import CampaignStackNavigator from './CampaignStackNavigator';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CommunityStackNavigator from './CommunityStackNavigator';
+import UserStackNavigator from './UserStackNavigator';
 
 const MainStack = createBottomTabNavigator();
 const MainStackNavigator = () => {
@@ -109,7 +110,7 @@ const MainStackNavigator = () => {
           />
           <MainStack.Screen
             name="TaiKhoan"
-            component={MentalStackNavigator}
+            component={UserStackNavigator}
             options={{ headerShown: false, tabBarLabel: 'Tài khoản' }}
           />
         </MainStack.Group>

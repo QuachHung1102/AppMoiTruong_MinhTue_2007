@@ -5,7 +5,9 @@ import { TrackMealScreen } from './home/TrackMealScreen';
 import { CampaignScreen } from './campaign/CampaignScreen';
 import { CampaignNotiScreen } from './campaign/CampaignNotiScreen';
 import { CampaignDetailScreen } from './campaign/CampaignDetailScreen';
-import { UserCampaignScreen } from './community/userCampaignScreen';
+import { CommunityScreen } from './community/CommunityScreen';
+import { UserCampaignScreen } from './community/UserCampaignScreen';
+import { UserScreen } from './user/UserScreen';
 import { CalendarScreen } from './calendar/CalendarScreen';
 import { CalendarFullScreen } from './calendar/CalendarFullScreen';
 import { CalendarFilters } from './calendar/CalendarFilters';
@@ -17,7 +19,9 @@ export {
   CampaignScreen,
   CampaignNotiScreen,
   CampaignDetailScreen,
+  CommunityScreen,
   UserCampaignScreen,
+  UserScreen,
   CalendarScreen,
   CalendarFullScreen,
   CalendarFilters,

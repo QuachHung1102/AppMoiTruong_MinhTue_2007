@@ -19,6 +19,7 @@ const icons = {
   pinpoint: require('../assets/icons/pinpoint.png'),
   pinpoint_fat: require('../assets/icons/pinpoint-fat.png'),
   calendar_clock : require('../assets/icons/calendar-clock.png'),
+  list_circle : require('../assets/icons/list-circle.png'),
   checked: require('../assets/icons/checked.png'),
   bell: require('../assets/icons/bell.png'),
   logout: require('../assets/icons/logout-drawer.png'),
@@ -28,6 +29,9 @@ const icons = {
   user_android: require('../assets/icons/account-detail.png'),
   warning_circle: require('../assets/icons/warning-circle.png'),
   heart: require('../assets/icons/heart.png'),
+  heart_gray : require('../assets/icons/heart-gray.png'),
+  comment: require('../assets/icons/comment.png'),
+  link: require('../assets/icons/link.png'),
 };
 
 const lightColors = {
