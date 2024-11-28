@@ -10,6 +10,7 @@ const icons = {
   userAvatar: require('../assets/icons/default-avatar.jpg'),
   userDefault: require('../assets/icons/userDefault.png'),
   backArrow: require('../assets/icons/arrow-back-icon.png'),
+  chevron_right: require('../assets/icons/chevron-right.png'),
   add: require('../assets/icons/add.png'),
   home_android: require('../assets/icons/home-icon-24.png'),
   search: require('../assets/icons/search.png'),
@@ -32,6 +33,11 @@ const icons = {
   heart_gray : require('../assets/icons/heart-gray.png'),
   comment: require('../assets/icons/comment.png'),
   link: require('../assets/icons/link.png'),
+  xedayhang: require('../assets/icons/xedayhang.png'),
+  bookmark: require('../assets/icons/bookmark.png'),
+  message_square_dots: require('../assets/icons/message-square-dots.png'),
+  login: require('../assets/icons/login.png'),
+  trash_2: require('../assets/icons/trash-2.png'),
 };
 
 const lightColors = {

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
-import { Dimensions, FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { Dimensions, TouchableOpacity, Image as ImageRN } from "react-native";
 import { View, Text, ActivityIndicator, useTheme, useTranslations, TouchableIcon, Button } from "../../core/dopebase";
 import dynamicStyles from "./styles";
 import { useNavigation } from "@react-navigation/core";
@@ -31,7 +31,7 @@ export const UserScreen = memo(() => {
   const icons = theme.icons;
   const styles = dynamicStyles(theme, appearance);
   const avatarSize = useMemo(() => {
-    return height * 0.08;
+    return height * 0.15;
   }, []);
 
   useEffect(() => {
@@ -106,8 +106,8 @@ export const UserScreen = memo(() => {
         fontFamily: 'Nunito-Bold',
       },
       headerTitleAlign: 'center',
-      headerLeft: _headerLeft,
-      headerRight: _headerRight,
+      // headerLeft: _headerLeft,
+      // headerRight: _headerRight,
       headerStyle: {
         backgroundColor: colorSet.thirBackground,
         borderBottomWidth: 0,
@@ -127,8 +127,101 @@ export const UserScreen = memo(() => {
     )
   } else {
     return (
-      <View fx1 style={{ backgroundColor: colorSet.secondaryBackground }}>
-        
+      <View style={styles.container}>
+        <View style={styles.userContainer}>
+          <View mb2 style={styles.userInfo}>
+            <Avatar.Text size={avatarSize} label="T" />
+            <Text mt4 style={styles.textL}>Trịnh Minh Tuệ</Text>
+            <Text style={[styles.textS, { fontWeight: '300', fontFamily: 'Nunito-Regular', color: colorSet.secondaryText }]}>Tham gia từ: 26/02/2023</Text>
+          </View>
+          <View>
+            <TouchableOpacity>
+              <View style={[styles.flexRow, styles.userInfoItem]}>
+                <View style={[styles.flexRow, { columnGap: width * 0.025 }]}>
+                  <ImageRN
+                    source={icons.xedayhang}
+                    style={styles.userCampaignItemIcons}
+                  />
+                  <Text>Đơn hàng của bạn</Text>
+                </View>
+                <View>
+                  <ImageRN
+                    source={icons.chevron_right}
+                    style={styles.userCampaignItemIcons}
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View style={[styles.flexRow, styles.userInfoItem]}>
+                <View style={[styles.flexRow, { columnGap: width * 0.025 }]}>
+                  <ImageRN
+                    source={icons.bookmark}
+                    style={styles.userCampaignItemIcons}
+                  />
+                  <Text>Đơn hàng của bạn</Text>
+                </View>
+                <View>
+                  <ImageRN
+                    source={icons.chevron_right}
+                    style={styles.userCampaignItemIcons}
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View style={[styles.flexRow, styles.userInfoItem]}>
+                <View style={[styles.flexRow, { columnGap: width * 0.025 }]}>
+                  <ImageRN
+                    source={icons.message_square_dots}
+                    style={styles.userCampaignItemIcons}
+                  />
+                  <Text>Đơn hàng của bạn</Text>
+                </View>
+                <View>
+                  <ImageRN
+                    source={icons.chevron_right}
+                    style={styles.userCampaignItemIcons}
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View style={[styles.flexRow, styles.userInfoItem]}>
+                <View style={[styles.flexRow, { columnGap: width * 0.025 }]}>
+                  <ImageRN
+                    source={icons.login}
+                    style={styles.userCampaignItemIcons}
+                  />
+                  <Text>Đơn hàng của bạn</Text>
+                </View>
+                <View>
+                  <ImageRN
+                    source={icons.chevron_right}
+                    style={styles.userCampaignItemIcons}
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View style={[styles.flexRow, styles.userInfoItem]}>
+                <View style={[styles.flexRow, { columnGap: width * 0.025 }]}>
+                  <ImageRN
+                    source={icons.trash_2}
+                    style={styles.userCampaignItemIcons}
+                  />
+                  <Text>Đơn hàng của bạn</Text>
+                </View>
+                <View>
+                  <ImageRN
+                    source={icons.chevron_right}
+                    style={styles.userCampaignItemIcons}
+                  />
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     );
   }
